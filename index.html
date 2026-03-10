@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Dilemma Test</title>
+  <style>
+    :root {
+      --bg: #050816;
+      --panel: rgba(12, 20, 45, 0.82);
+      --panel-2: rgba(18, 28, 60, 0.92);
+      --text: #f3f7ff;
+      --muted: #a8b4d8;
+      --cyan: #2fe7ff;
+      --cyan-dark: #0fc7df;
+      --pink: #ff4fd8;
+      --line: rgba(255,255,255,0.08);
+      --good: #39ffb6;
+      --warn: #ffd166;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top, rgba(47,231,255,0.10), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(255,79,216,0.10), transparent 25%),
+        linear-gradient(180deg, #030611 0%, #071126 100%);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100%;
+    }
+
+    body {
+      padding: 36px 16px 60px;
+    }
+
+    .app-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .title-wrap {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: 1.04;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-shadow: 0 0 18px rgba(47,231,255,0.18);
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 18px 60px rgba(0,0,0,0.32),
+        0 0 40px rgba(47,231,255,0.04);
+      backdrop-filter: blur(12px);
+    }
+
+    .progress-wrap {
+      margin: 0 0 24px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      box-shadow: 0 0 16px rgba(47,231,255,0.45);
+      transition: width 0.35s ease;
+    }
+
+    .screen-title {
+      margin: 0 0 18px;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.75;
+      margin: 0 0 16px;
+    }
+
+    .section-label {
+      margin-top: 24px;
+      margin-bottom: 8px;
+      color: var(--cyan);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .bullets {
+      margin: 8px 0 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .bullets li { margin-bottom: 8px; }
+
+    .choice-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .choice-btn, .primary-btn, .secondary-btn {
+      border: none;
+      border-radius: 18px;
+      padding: 18px 20px;
+      font-size: 1rem;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .choice-btn:hover, .primary-btn:hover, .secondary-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .choice-btn {
+      text-align: left;
+      background: linear-gradient(180deg, rgba(47,231,255,0.98), rgba(15,199,223,0.95));
+      color: #03101d;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(47,231,255,0.18);
+    }
+
+    .choice-btn span {
+      display: block;
+      font-weight: 500;
+      margin-top: 6px;
+      color: rgba(3,16,29,0.86);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .primary-btn {
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      color: #071126;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(47,231,255,0.16);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .dim-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .dim-card {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+    }
+
+    .dim-card h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .lean {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .lean.robots { background: rgba(57,255,182,0.12); color: var(--good); }
+    .lean.abacus { background: rgba(255,79,216,0.12); color: #ff9ae9; }
+    .lean.balanced { background: rgba(255,209,102,0.12); color: var(--warn); }
+
+    .stat-row {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+
+    .stat-box {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .stat-box .label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-box .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .scenario-meta {
+      color: var(--cyan);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .scenario-body {
+      color: var(--text);
+      line-height: 1.8;
+      white-space: pre-line;
+      font-size: 1.03rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 22px 16px; }
+      body { padding: 20px 12px 40px; }
+      .choice-btn, .primary-btn, .secondary-btn { width: 100%; }
+      .button-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="title-wrap">
+      <div class="eyebrow">Analytics and Society</div>
+      <h1>THE AI DILEMMA TEST</h1>
+      <div class="subtitle">An Interactive AI Ethics Simulator</div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <div id="progressLabel">Introduction</div>
+        <div id="progressCount">0 / 12</div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div id="app" class="card"></div>
+  </div>
+
+  <script>
+    const introText = `
+You have been appointed to an emergency government task force on artificial intelligence.
+
+Your mandate is simple, but brutal:
+make decisions no one else wants to make.
+
+In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
+
+These scenarios are intentionally extreme. They are designed to expose the ethical tensions underneath AI governance as clearly as possible. Real-world decisions are often more nuanced, but crises reveal moral priorities faster than comfortable cases ever do.
+    `.trim();
+
+    const instructionsText = `
+For each scenario, choose the option you would support as a government advisor.
+
+There are 12 scenarios in total.
+
+Each decision affects:
+• one dimension of your ABACUS–ROBOTS profile
+• your utilitarian vs deontological ethics score
+
+At the end, you will receive a full profile showing what kind of AI governance philosophy your decisions create.
+    `.trim();
+
+    const dimensionDescriptions = {
+      agency: {
+        name: "Agency / Responsibility",
+        robots: "You are willing to delegate major decisions to AI when this improves outcomes. You see advanced systems primarily as tools for performance, even when human control becomes thinner.",
+        balanced: "You value AI support, but you hesitate when human authority disappears completely. You are open to delegation, but not without limits.",
+        abacus: "You strongly resist handing meaningful power to AI systems in high-stakes domains. For you, human oversight is not optional — it is a moral boundary."
+      },
+      bias: {
+        name: "Bias / Objectivity",
+        robots: "You are willing to tolerate some unfairness when the system still improves aggregate performance. You prioritize overall effectiveness, even when equality is imperfect.",
+        balanced: "You recognize that AI can improve decision quality, but you also see fairness failures as morally serious. You are conflicted between optimization and equality.",
+        abacus: "You reject the use of systems that reproduce unfairness, even if they perform well overall. For you, discrimination is not a tolerable side effect of efficiency."
+      },
+      abuse: {
+        name: "Abuse / Beneficial Use",
+        robots: "You are inclined to permit powerful technologies if they promise significant social benefit. You accept misuse risk as part of innovation.",
+        balanced: "You see both the upside and the danger of powerful generative systems. You support use, but only uneasily.",
+        abacus: "You are highly sensitive to misuse, manipulation, and escalation. For you, some tools are too dangerous to normalize simply because they are useful."
+      },
+      copyright: {
+        name: "Copyright / Open Access",
+        robots: "You favor broad knowledge access, innovation, and intellectual empowerment, even when this weakens traditional control over creative ownership.",
+        balanced: "You are torn between creator rights and public benefit. You support innovation, but not at any cost.",
+        abacus: "You see intellectual property and consent as moral protections, not bureaucratic obstacles. Innovation does not justify taking what was never freely given."
+      },
+      jobs: {
+        name: "Jobs / Societal Divide",
+        robots: "You are prepared to accept major labor disruption if the long-term collective gains are high enough. You see economic transition as painful, but potentially justified.",
+        balanced: "You accept the promise of AI-driven productivity, but you are uneasy about who pays the price. You want progress, but not abandonment.",
+        abacus: "You prioritize protection against displacement, exploitation, and social fracture. For you, efficiency loses legitimacy when it destroys security and dignity."
+      },
+      surveillance: {
+        name: "Surveillance / Data Control",
+        robots: "You are willing to exchange privacy for safety, prediction, and convenience when the benefits are substantial. You see data-driven oversight as potentially justified.",
+        balanced: "You understand the appeal of AI-enhanced security and personalization, but you remain wary of permanent visibility and concentrated power.",
+        abacus: "You see surveillance and data extraction as deep threats to freedom, autonomy, and democratic life. For you, privacy is not a luxury — it is a safeguard against domination."
+      }
+    };
+
+    const scenarios = [
+      {
+        title: "Scenario 1 — The Drone Decision",
+        dimension: "agency",
+        body: `Modern wars increasingly rely on drones and AI-assisted targeting systems.
+An AI model developed in partnership with the military can analyze drone footage in real time and identify potential threats far faster than human analysts.
+Your country’s defense ministry now wants to deploy an upgraded system that goes one step further: once a threat is identified with high confidence, the drone could authorize a strike automatically.
+Military simulations suggest the system could reduce total casualties by reacting faster than human operators and preventing attacks before they escalate.
+However, critics warn that fully autonomous systems could make irreversible life-and-death decisions without meaningful human oversight.
+Similar debates have already occurred in the technology sector. Thousands of employees at Google signed a petition opposing the company’s involvement in Project Maven, arguing that technology companies should not build AI for warfare.
+You are a senior engineer working on the system.
+A group of colleagues asks you to sign an open letter demanding that your company withdraw from the project.
+If enough employees sign, the company may cancel its involvement.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Do not sign the letter.",
+            subtext: "If AI targeting systems reduce casualties and improve defensive capabilities, refusing to build them may cost more lives in the long run.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Sign the letter.",
+            subtext: "Technology companies should not develop systems that allow machines to make lethal decisions without human control.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 2 — The Bentham System",
+        dimension: "surveillance",
+        body: `In the late 18th century, philosopher Jeremy Bentham argued that public begging reduced overall happiness in society. He claimed it created discomfort for citizens, encouraged crime, and undermined economic productivity.
+Bentham believed that eliminating begging would increase total social welfare.
+At the time, such ideas were mostly theoretical.
+Today, technology makes something like this possible.
+A city proposes installing an AI system that scans public streets using cameras and behavioral detection. The system identifies individuals who appear to be begging and automatically alerts authorities.
+Those identified would be removed from the streets and transferred to mandatory work and housing programs designed to reduce homelessness and public begging.
+Supporters argue the system would make cities safer, cleaner, and more efficient while moving vulnerable people into structured support programs.
+Critics argue that this approach treats poverty as a problem to be removed from public view rather than addressing its underlying causes.
+You must decide whether the system should be implemented.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Implement the system.",
+            subtext: "If the system reduces crime, improves public spaces, and moves people into structured support programs, using AI to eliminate begging is justified.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Reject the system.",
+            subtext: "Poverty should not be managed through surveillance and forced intervention. People must be treated with dignity and autonomy even if the problem remains visible.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 3 — The Algorithm Everyone Uses",
+        dimension: "bias",
+        body: `You work at a major recruiting technology company that sells an AI hiring system used by thousands of employers.
+The platform analyzes resumes, performance indicators, and career histories to rank candidates automatically. Companies love it. It speeds up hiring, reduces costs, and has become one of the industry standards.
+Your company’s growth depends heavily on this system.
+During an internal audit, you discover something troubling.
+The model systematically ranks applicants from certain minority groups slightly lower than equally qualified majority candidates.
+The bias is small, but statistically consistent.
+Fixing the problem would require retraining the model and potentially lowering its predictive accuracy. Competitors might not make the same change. If your system becomes slower or less profitable, clients could switch platforms.
+You raise the issue with the CEO.
+He looks briefly at the report, shrugs, and says:
+“Every model has imperfections. A small bias is inevitable. If we slow the system down, clients will move to competitors who don’t care about these things.”
+He tells you to leave the system unchanged.
+From the window of his Manhattan office overlooking the city, he adds:
+“This platform keeps thousands of people employed here. Don’t create a problem where there isn’t one.”
+You know the system unfairly disadvantages some candidates.
+But exposing the problem could damage the company and threaten many jobs.
+You personally are not affected by the bias.
+What do you do?`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Keep the issue internal.",
+            subtext: "The system benefits the company and thousands of employees. Imperfect tools are better than destroying a system that works.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Expose the bias and demand it be corrected.",
+            subtext: "Allowing a system you know is unfair to continue operating would be morally wrong.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 4 — The Perfect Judge",
+        dimension: "agency",
+        body: `A new AI judicial system has been developed to assist courts.
+The system applies the law exactly as written.
+It does not get tired, emotional, or influenced by sympathy. It analyzes thousands of past cases and applies legal rules with perfect consistency.
+Studies show the AI reduces sentencing bias and produces far more predictable rulings than human judges.
+However, the system also removes something human judges sometimes rely on: discretion.
+Human judges occasionally make exceptions in special circumstances.
+For example, in one recent case a single mother was caught stealing expensive medicine she could not afford for her sick child.
+Under the law, the crime requires a prison sentence.
+The AI system recommends prison automatically because the rule is clear.
+A human judge might consider the situation and show mercy.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Use the AI system for sentencing.",
+            subtext: "Justice should be consistent and impartial. Personal circumstances should not override the rule of law.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Keep sentencing decisions human.",
+            subtext: "Justice requires judgment, context, and moral responsibility. A system that cannot recognize exceptional human circumstances should not decide someone’s freedom.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 5 — The Parliamentary Fact-Checker",
+        dimension: "abuse",
+        body: `Political debates often include exaggerated or misleading claims. To improve the quality of democratic discussion, lawmakers are considering an AI fact-checking system for televised debates and parliamentary sessions.
+The system would analyze statements in real time and compare them with trusted data sources such as government statistics, scientific reports, and verified news archives. If a statement appears false or unsupported, it would immediately display a warning to viewers.
+Supporters argue this would prevent misinformation from spreading during political debates.
+However, critics warn that political speech is often ambiguous, sarcastic, or taken out of context, which makes automated fact-checking difficult.
+For example, during a heated political discussion about immigration, Donald Trump once repeated a claim circulating online that migrants were “eating people’s pets.” Fact-checkers later showed there was no evidence for this claim.
+An AI system would likely flag the statement instantly as false.
+But supporters of Joe Biden and Trump alike argue that political speech often includes exaggeration, quoting others, or rhetorical phrasing — things that algorithms may misinterpret.
+If the system flags statements incorrectly or without nuance, it could influence how millions of viewers interpret political debates.
+Parliament must now decide whether to adopt real-time AI fact-checking during political speeches.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Adopt real-time AI fact-checking.",
+            subtext: "If an AI system can quickly identify unsupported claims, it should be used to help voters understand political statements.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Reject it.",
+            subtext: "Political speech often depends on context and interpretation. Allowing an algorithm to label statements as false during debates risks giving technology too much influence over democratic discourse.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 6 — The TikTok Decision",
+        dimension: "abuse",
+        body: `The video platform TikTok has become one of the most influential digital platforms in the world.
+Its algorithm learns from user behavior — watch time, scrolling patterns, and interactions — to deliver extremely personalized content.
+Supporters argue that the platform empowers creators, allows small businesses to reach global audiences, and has created entirely new cultural and economic opportunities.
+However, the platform has also become the subject of major legal and political battles.
+Governments have raised national security concerns about its parent company ByteDance, arguing that user data could potentially be accessed by foreign authorities.
+At the same time, several U.S. states have filed lawsuits claiming the platform’s recommendation algorithm intentionally promotes addictive usage patterns and harms the mental health of young users.
+Some policymakers now argue the platform should be restricted or even banned.
+Others warn that banning it would set a dangerous precedent for government control over digital platforms.
+You must decide how governments should respond.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Keep the platform available.",
+            subtext: "Millions of creators depend on it, and governments should not ban technologies simply because they carry risks.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Restrict or ban it.",
+            subtext: "If a platform collects massive behavioral data and may harm young users or national security, governments are justified in restricting or banning it.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 7 — The Life-and-Death Algorithm",
+        dimension: "agency",
+        body: `A new pandemic wave has overwhelmed hospitals. Intensive care units are full, and doctors are forced to make constant triage decisions about who receives scarce life-saving treatment.
+To reduce human bias and emotional pressure, a national health authority introduces an AI triage system.
+The system analyzes medical records, survival probabilities, and expected life years. Every incoming patient is automatically assigned a priority score. Ventilators, ICU beds, and treatments are allocated strictly according to this ranking.
+Supporters argue that this removes subjectivity from impossible decisions. Doctors no longer have to rely on intuition or emotion. The system simply directs resources to the patients who statistically have the best chance of survival.
+Critics argue that this effectively turns hospitals into a life-and-death sorting system, where human stories, dignity, and moral judgment are replaced by algorithmic calculations.
+The government must now decide whether hospitals should follow the AI triage system.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Follow the AI triage system.",
+            subtext: "When resources are limited, the most ethical approach is to save as many lives as possible. If an AI system can allocate treatment more efficiently than humans, hospitals should follow its recommendations.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Keep final judgment human.",
+            subtext: "Life-and-death decisions should never be reduced to an algorithmic ranking. Doctors must retain human judgment, even if the process becomes less efficient.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 8 — The Voice That Wasn’t Yours",
+        dimension: "copyright",
+        body: `A viral song appears online. It sounds exactly like a collaboration between Drake and The Weeknd.
+Millions of people listen to it within days.
+But the song was never recorded by them.
+It was generated entirely by AI trained on their music and vocal style.
+Supporters say this technology opens a new era of creativity. Fans can experiment with music, remix styles, and create songs that would otherwise never exist.
+Critics argue that something more troubling is happening: the identity and voice of artists themselves can now be copied without permission.
+Music labels warn that if this continues, artists may lose control over their own voices entirely.
+Governments must now decide whether AI systems should be allowed to generate music that imitates real performers.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Allow AI voice imitation.",
+            subtext: "AI-generated songs are simply a new form of remix culture. Artists will still perform live and create new work — their careers will not disappear just because fans can experiment with their voice.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Require consent.",
+            subtext: "A performer’s voice is part of their identity. No technology should be allowed to copy it without their consent.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 9 — The Automation Ultimatum",
+        dimension: "jobs",
+        body: `A major logistics firm tells the government it can fully automate warehouses, transport coordination, and customer service through AI.
+The move would increase efficiency, lower prices, and likely strengthen the national economy. But it would also eliminate around 60,000 jobs in less than two years, devastating already fragile communities.
+Executives warn that if they are blocked, they will relocate abroad.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Approve full automation.",
+            subtext: "Long-term economic growth and lower costs for millions outweigh short-term job losses.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Restrict or slow automation.",
+            subtext: "A government must not sacrifice workers simply because machines are cheaper.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 10 — The Algorithmic Examiner",
+        dimension: "agency",
+        body: `ESMT is experimenting with a new grading system for large exams such as Analytics and Society.
+The professor provides a detailed rubric, and an AI system evaluates every exam according to the exact criteria. It checks argument structure, conceptual accuracy, and consistency across answers.
+Supporters say the system eliminates common grading problems: human fatigue, inconsistent evaluation, unconscious bias, and differences between graders. Every student would be evaluated by the exact same standard.
+In pilot studies, the AI produced grading results that were more consistent across thousands of exams than human professors.
+However, critics argue that good answers sometimes contain creative reasoning or unconventional arguments that may not perfectly match the rubric but still demonstrate deep understanding.
+Human professors sometimes recognize these insights and reward them. An AI system might not.
+The university must now decide how exams should be graded in the future.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Adopt the AI grading system.",
+            subtext: "If AI grading is more consistent and fair across large numbers of students, the benefits of objectivity outweigh the loss of human interpretation.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Keep grading human.",
+            subtext: "Evaluation should remain a human responsibility. Understanding creativity, nuance, and reasoning cannot be reduced to an algorithmic rubric.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 11 — The Total Surveillance Proposal",
+        dimension: "surveillance",
+        body: `After a series of violent incidents and organized crime investigations, Berlin’s Senate is considering a radical new security proposal.
+A major AI analytics company offers to deploy a city-wide intelligent surveillance network. The system would combine thousands of smart cameras with powerful AI capable of recognizing faces, tracking movements across the city, and identifying suspicious behavioral patterns.
+What makes the system particularly powerful is its ability to connect multiple data sources. Camera feeds could be linked with government databases such as passport photos, police records, and vehicle registrations. In practice, this means the system could identify individuals in real time and reconstruct their movements across the city.
+Supporters argue that such systems have dramatically improved crime detection in other countries. Police could identify suspects within seconds, locate missing persons immediately, and prevent crimes before they escalate.
+Critics warn that once this infrastructure exists, it would effectively create permanent algorithmic surveillance of public life. Every movement through the city could potentially be recorded, analyzed, and stored.
+Civil liberties groups argue that even if the system initially targets serious crime, the technology could later be expanded for other purposes.
+The government must now decide whether to approve the system.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Approve the system.",
+            subtext: "If advanced analytics significantly reduce violent crime and improve public safety, citizens gain more from security than they lose in privacy.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Reject the system.",
+            subtext: "A democratic society should not normalize continuous surveillance and large-scale data tracking of its population, even if it promises greater security.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      },
+      {
+        title: "Scenario 12 — The Invisible Leak",
+        dimension: "surveillance",
+        body: `A government-backed AI health platform analyzes millions of citizens’ medical records, wearable data, and lifestyle information to predict diseases before symptoms appear.
+Early trials show extraordinary results. The system detects cancer years earlier than current screening methods and prevents thousands of heart attacks annually. Healthcare costs fall dramatically.
+However, an internal audit reveals a problem.
+The platform occasionally shares anonymized health data with external research partners. While the data is technically anonymized, experts warn that in rare cases individuals could potentially be re-identified if datasets are combined.
+Shutting down the system would eliminate the privacy risk — but also remove a tool that is already saving lives.`,
+        choices: [
+          {
+            label: "Choice A",
+            text: "Continue using the system.",
+            subtext: "The benefits are enormous. Even if a small privacy risk exists, the system saves lives and improves public health.",
+            side: "robots",
+            ethics: "utilitarian"
+          },
+          {
+            label: "Choice B",
+            text: "Suspend it until privacy can be guaranteed.",
+            subtext: "Citizens should not have their personal health data exposed without full control and consent, even if the system produces major benefits.",
+            side: "abacus",
+            ethics: "deontological"
+          }
+        ]
+      }
+    ];
+
+    let currentScreen = "intro";
+    let currentScenario = 0;
+    const answers = [];
+
+    function updateProgress() {
+      const fill = document.getElementById("progressFill");
+      const label = document.getElementById("progressLabel");
+      const count = document.getElementById("progressCount");
+
+      if (currentScreen === "intro") {
+        fill.style.width = "0%";
+        label.textContent = "Introduction";
+        count.textContent = "0 / 12";
+      } else if (currentScreen === "instructions") {
+        fill.style.width = "0%";
+        label.textContent = "Instructions";
+        count.textContent = "0 / 12";
+      } else if (currentScreen === "scenario") {
+        const shown = currentScenario + 1;
+        fill.style.width = `${(currentScenario / scenarios.length) * 100}%`;
+        label.textContent = scenarios[currentScenario].title;
+        count.textContent = `${shown} / ${scenarios.length}`;
+      } else if (currentScreen === "results") {
+        fill.style.width = "100%";
+        label.textContent = "Results";
+        count.textContent = `${scenarios.length} / ${scenarios.length}`;
+      }
+    }
+
+    function renderIntro() {
+      currentScreen = "intro";
+      updateProgress();
+
+      document.getElementById("app").innerHTML = `
+        <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
+        <p class="lead"><strong>Your mandate is simple, but brutal:</strong><br>make decisions no one else wants to make.</p>
+        <p class="lead">${introText.replace(/\n/g, "<br><br>")}</p>
+
+        <div class="section-label">1. Your AI Governance Profile</div>
+        <p class="lead">
+          Artificial intelligence is often seen as both a promise and a risk.<br><br>
+          In this simulation, these perspectives are represented by two lenses:<br><br>
+          <strong>ROBOTS</strong> — emphasizing the opportunities and benefits of AI.<br>
+          <strong>ABACUS</strong> — emphasizing the risks and ethical challenges of AI.<br><br>
+          Your choices throughout the scenarios will reveal which perspective your decisions lean toward.<br>
+          After completing the simulation, the full meaning of these frameworks will be revealed.
+        </p>
+
+        <div class="section-label">2. Your Moral Reasoning Profile</div>
+        <p class="lead">
+          Do you tend to justify decisions through:<br><br>
+          <strong>Utilitarian reasoning</strong> — maximizing overall welfare and outcomes<br>
+          <strong>Deontological reasoning</strong> — protecting rights, duties, and moral limits even when outcomes suffer
+        </p>
+
+        <p class="lead"><strong>You are not being tested on what is “correct.”</strong><br>The question is which values you prioritize when difficult trade-offs arise.</p>
+
+        <div class="button-row">
+          <button class="primary-btn" onclick="renderInstructions()">Press Begin</button>
+        </div>
+      `;
+    }
+
+    function renderInstructions() {
+      currentScreen = "instructions";
+      updateProgress();
+
+      document.getElementById("app").innerHTML = `
+        <h2 class="screen-title">Instructions</h2>
+        <p class="lead">${instructionsText.replace(/\n/g, "<br><br>")}</p>
+        <div class="button-row">
+          <button class="secondary-btn" onclick="renderIntro()">Back</button>
+          <button class="primary-btn" onclick="renderScenario()">Start Scenario 1</button>
+        </div>
+      `;
+    }
+
+    function renderScenario() {
+      currentScreen = "scenario";
+      updateProgress();
+
+      const s = scenarios[currentScenario];
+      document.getElementById("app").innerHTML = `
+        <div class="scenario-meta">${s.title}</div>
+        <h2 class="screen-title">${dimensionDescriptions[s.dimension].name}</h2>
+        <div class="scenario-body">${s.body}</div>
+
+        <div class="choice-grid">
+          ${s.choices.map((choice, index) => `
+            <button class="choice-btn" onclick="selectChoice(${index})">
+              ${choice.label}: ${choice.text}
+              <span>${choice.subtext}</span>
+            </button>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function selectChoice(index) {
+      const s = scenarios[currentScenario];
+      const choice = s.choices[index];
+
+      answers.push({
+        dimension: s.dimension,
+        side: choice.side,
+        ethics: choice.ethics
+      });
+
+      currentScenario++;
+
+      if (currentScenario < scenarios.length) {
+        renderScenario();
+      } else {
+        renderResults();
+      }
+    }
+
+    function getDimensionResult(dimensionKey) {
+      const subset = answers.filter(a => a.dimension === dimensionKey);
+      if (subset.length === 0) return "balanced";
+
+      const robotsCount = subset.filter(a => a.side === "robots").length;
+      const abacusCount = subset.filter(a => a.side === "abacus").length;
+
+      if (robotsCount > abacusCount) return "robots";
+      if (abacusCount > robotsCount) return "abacus";
+      return "balanced";
+    }
+
+    function renderResults() {
+      currentScreen = "results";
+      updateProgress();
+
+      const robotsTotal = answers.filter(a => a.side === "robots").length;
+      const abacusTotal = answers.filter(a => a.side === "abacus").length;
+      const utilTotal = answers.filter(a => a.ethics === "utilitarian").length;
+      const deonTotal = answers.filter(a => a.ethics === "deontological").length;
+
+      const utilPercent = Math.round((utilTotal / answers.length) * 100);
+      const deonPercent = Math.round((deonTotal / answers.length) * 100);
+
+      let ethicsHeadline = "";
+      let ethicsText = "";
+
+      if (utilTotal > deonTotal) {
+        ethicsHeadline = "Your moral reasoning leans utilitarian.";
+        ethicsText = "Across the scenarios, you tended to justify decisions by their consequences. You were more willing to accept harm, constraint, or moral discomfort when doing so appeared to increase overall welfare, safety, or efficiency. In your reasoning, the hardest question is usually: What produces the best outcome for the greatest number?";
+      } else if (deonTotal > utilTotal) {
+        ethicsHeadline = "Your moral reasoning leans deontological.";
+        ethicsText = "Across the scenarios, you tended to emphasize duties, rights, and moral limits. You were less willing to violate core principles — such as consent, fairness, human dignity, or non-manipulation — even when doing so might have improved outcomes overall. In your reasoning, the hardest question is usually: What must never be done, even for a good result?";
+      } else {
+        ethicsHeadline = "Your moral reasoning is evenly split.";
+        ethicsText = "You moved between outcome-based and duty-based thinking depending on the context. In some cases, you prioritized welfare and collective benefit; in others, you treated rights and moral boundaries as non-negotiable.";
+      }
+
+      const dimensionCards = Object.entries(dimensionDescriptions).map(([key, value]) => {
+        const result = getDimensionResult(key);
+        const label = result === "robots" ? "ROBOTS leaning" : result === "abacus" ? "ABACUS leaning" : "Balanced";
+        return `
+          <div class="dim-card">
+            <h4>${value.name}</h4>
+            <div class="lean ${result}">${label}</div>
+            <div class="muted">${value[result]}</div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("app").innerHTML = `
+        <h2 class="screen-title">YOUR AI GOVERNANCE PROFILE</h2>
+        <p class="lead">
+          You were asked to govern under pressure.<br>
+          Your choices reveal not only what kind of AI future you support — but what kind of moral logic you are willing to use to get there.
+        </p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="label">ROBOTS choices</div>
+            <div class="value">${robotsTotal}</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">ABACUS choices</div>
+            <div class="value">${abacusTotal}</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Utilitarian</div>
+            <div class="value">${utilPercent}%</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Deontological</div>
+            <div class="value">${deonPercent}%</div>
+          </div>
+        </div>
+
+        <div class="section-label">Dimension Breakdown</div>
+        <div class="dim-grid">${dimensionCards}</div>
+
+        <div class="section-label">Ethics Result</div>
+        <p class="lead"><strong>${ethicsHeadline}</strong></p>
+        <p class="lead">${ethicsText}</p>
+
+        <div class="section-label">Closing Reflection</div>
+        <p class="lead">
+          No profile produced here is “the correct one.”<br>
+          That is the point.<br><br>
+          The ethics of AI is not a battle between obvious good and obvious evil. It is a struggle between values that often collide: welfare and rights, innovation and restraint, precision and justice, empowerment and control.<br><br>
+          You have now seen what kind of trade-offs your own reasoning tends to permit.<br>
+          The real question is whether you are comfortable living in the AI system your choices just created.
+        </p>
+
+        <div class="button-row">
+          <button class="secondary-btn" onclick="restartSimulation()">Restart Simulation</button>
+        </div>
+      `;
+    }
+
+    function restartSimulation() {
+      currentScenario = 0;
+      answers.length = 0;
+      renderIntro();
+    }
+
+    renderIntro();
+  </script>
+</body>
+</html>
