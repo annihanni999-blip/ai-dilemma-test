@@ -44,7 +44,7 @@
 
     .title-wrap {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .eyebrow {
@@ -65,7 +65,7 @@
     }
 
     .subtitle {
-      margin-top: 12px;
+      margin-top: 8px;
       color: var(--muted);
       font-size: clamp(1rem, 2vw, 1.2rem);
       font-weight: 600;
@@ -84,7 +84,7 @@
     }
 
     .progress-wrap {
-      margin: 0 0 24px;
+      margin: 0 0 20px;
     }
 
     .progress-meta {
@@ -121,13 +121,13 @@
 
     .lead {
       color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.35;
-      margin: 0 0 6px;
+      font-size: 0.97rem;
+      line-height: 1.42;
+      margin: 0 0 8px;
     }
 
     .section-label {
-      margin-top: 18px;
+      margin-top: 14px;
       margin-bottom: 6px;
       color: var(--cyan);
       font-size: 0.9rem;
@@ -136,27 +136,18 @@
       font-weight: 700;
     }
 
-    .bullets {
-      margin: 8px 0 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .bullets li { margin-bottom: 8px; }
-
     .choice-grid {
       display: grid;
-      gap: 14px;
-      margin-top: 24px;
+      gap: 12px;
+      margin-top: 20px;
     }
 
     .choice-btn, .primary-btn, .secondary-btn {
       border: none;
       border-radius: 18px;
-      padding: 18px 20px;
+      padding: 16px 18px;
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.45;
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
@@ -173,10 +164,17 @@
       box-shadow: 0 10px 30px rgba(47,231,255,0.18);
     }
 
-    .choice-btn span {
-      display: block;
+    .choice-title {
+      font-weight: 800;
+      font-size: 1rem;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .choice-subtext {
       font-weight: 500;
-      margin-top: 6px;
+      font-size: 0.95rem;
+      line-height: 1.4;
       color: rgba(3,16,29,0.86);
     }
 
@@ -184,7 +182,7 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      margin-top: 18px;
     }
 
     .primary-btn {
@@ -204,7 +202,7 @@
     .dim-grid {
       display: grid;
       gap: 14px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .dim-card {
@@ -238,8 +236,8 @@
       display: grid;
       gap: 12px;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      margin-top: 16px;
-      margin-bottom: 10px;
+      margin-top: 10px;
+      margin-bottom: 8px;
     }
 
     .stat-box {
@@ -268,28 +266,23 @@
       text-transform: uppercase;
       letter-spacing: 0.09em;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .scenario-body {
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.48;
       white-space: pre-line;
-      font-size: 1.03rem;
+      font-size: 0.98rem;
+      max-width: 900px;
     }
 
     .muted {
       color: var(--muted);
     }
 
-    .footer-note {
-      margin-top: 24px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
     @media (max-width: 640px) {
-      .card { padding: 22px 16px; }
+      .card { padding: 20px 16px; }
       body { padding: 20px 12px 40px; }
       .choice-btn, .primary-btn, .secondary-btn { width: 100%; }
       .button-row { flex-direction: column; }
@@ -327,24 +320,20 @@ In every case, you will face a hard choice between competing values. No option i
 
 These scenarios are intentionally extreme. They are designed to expose the ethical tensions underneath AI governance as clearly as possible. Real-world decisions are often more nuanced, but crises reveal moral priorities faster than comfortable cases ever do.
 
-As you decide, the system will evaluate your choices across two layers: 
+As you decide, the system will evaluate your choices across two layers:
     `.trim();
 
     const instructionsText = `
-For each scenario, choose the option you would support as a government advisor.
+There are 12 choices in total.
 
-There are 12 scenarios in total.
-
-Each decision contributes to two profiles:
-• your AI perspective (ABACUS vs ROBOTS)
-• your moral reasoning style (utilitarian vs deontological)
+Each choice contributes to:
+• your AI perspective
+• your moral reasoning style
 
 Some choices will feel uncomfortable. That is intentional.
 
 Think carefully, but do not overanalyze.
 Trust your judgment and follow your intuition.
-
-At the end, you will receive a profile revealing the kind of AI governance philosophy your decisions create.
 `.trim();
 
     const dimensionDescriptions = {
@@ -352,7 +341,7 @@ At the end, you will receive a profile revealing the kind of AI governance philo
         name: "Agency / Responsibility",
         robots: "You are willing to delegate major decisions to AI when this improves outcomes. You see advanced systems primarily as tools for performance, even when human control becomes thinner.",
         balanced: "You value AI support, but you hesitate when human authority disappears completely. You are open to delegation, but not without limits.",
-        abacus: "You strongly resist handing meaningful power to AI systems in high-stakes domains. For you, human oversight is not optional — it is a moral boundary."
+        abacus: "You strongly resist handing meaningful power to AI systems in high-stakes domains. For you, human oversight is not optional but a moral boundary."
       },
       bias: {
         name: "Bias / Objectivity",
@@ -374,7 +363,7 @@ At the end, you will receive a profile revealing the kind of AI governance philo
       },
       jobs: {
         name: "Jobs / Societal Divide",
-        robots: "You are prepared to accept major labor disruption if the long-term collective gains are high enough. You see economic transition as painful, but potentially justified.",
+        robots: "You are prepared to accept labor disruption if the long-term collective gains are high enough. You see economic transition as painful, but potentially justified.",
         balanced: "You accept the promise of AI-driven productivity, but you are uneasy about who pays the price. You want progress, but not abandonment.",
         abacus: "You prioritize protection against displacement, exploitation, and social fracture. For you, efficiency loses legitimacy when it destroys security and dignity."
       },
@@ -382,13 +371,13 @@ At the end, you will receive a profile revealing the kind of AI governance philo
         name: "Surveillance / Data Control",
         robots: "You are willing to exchange privacy for safety, prediction, and convenience when the benefits are substantial. You see data-driven oversight as potentially justified.",
         balanced: "You understand the appeal of AI-enhanced security and personalization, but you remain wary of permanent visibility and concentrated power.",
-        abacus: "You see surveillance and data extraction as deep threats to freedom, autonomy, and democratic life. For you, privacy is not a luxury — it is a safeguard against domination."
+        abacus: "You see surveillance and data extraction as deep threats to freedom, autonomy, and democratic life. For you, privacy is not a luxury but a safeguard against domination."
       }
     };
 
     const scenarios = [
       {
-        title: "Scenario 1 — The Drone Decision",
+        title: "Scenario 1: The Drone Decision",
         dimension: "agency",
         body: `Modern wars increasingly rely on drones and AI-assisted targeting systems.
 An AI model developed in partnership with the military can analyze drone footage in real time and identify potential threats far faster than human analysts.
@@ -417,7 +406,7 @@ If enough employees sign, the company may cancel its involvement.`,
         ]
       },
       {
-        title: "Scenario 2 — The Bentham System",
+        title: "Scenario 2: The Bentham System",
         dimension: "surveillance",
         body: `In the late 18th century, philosopher Jeremy Bentham argued that public begging reduced overall happiness in society. He claimed it created discomfort for citizens, encouraged crime, and undermined economic productivity.
 Bentham believed that eliminating begging would increase total social welfare.
@@ -446,7 +435,7 @@ You must decide whether the system should be implemented.`,
         ]
       },
       {
-        title: "Scenario 3 — The Algorithm Everyone Uses",
+        title: "Scenario 3: The Algorithm Everyone Uses",
         dimension: "bias",
         body: `You work at a major recruiting technology company that sells an AI hiring system used by thousands of employers.
 The platform analyzes resumes, performance indicators, and career histories to rank candidates automatically. Companies love it. It speeds up hiring, reduces costs, and has become one of the industry standards.
@@ -483,7 +472,7 @@ What do you do?`,
         ]
       },
       {
-        title: "Scenario 4 — The Perfect Judge",
+        title: "Scenario 4: The Perfect Judge",
         dimension: "agency",
         body: `A new AI judicial system has been developed to assist courts.
 The system applies the law exactly as written.
@@ -513,7 +502,7 @@ A human judge might consider the situation and show mercy.`,
         ]
       },
       {
-        title: "Scenario 5 — The Parliamentary Fact-Checker",
+        title: "Scenario 5: The Parliamentary Fact-Checker",
         dimension: "abuse",
         body: `Political debates often include exaggerated or misleading claims. To improve the quality of democratic discussion, lawmakers are considering an AI fact-checking system for televised debates and parliamentary sessions.
 The system would analyze statements in real time and compare them with trusted data sources such as government statistics, scientific reports, and verified news archives. If a statement appears false or unsupported, it would immediately display a warning to viewers.
@@ -521,7 +510,7 @@ Supporters argue this would prevent misinformation from spreading during politic
 However, critics warn that political speech is often ambiguous, sarcastic, or taken out of context, which makes automated fact-checking difficult.
 For example, during a heated political discussion about immigration, Donald Trump once repeated a claim circulating online that migrants were “eating people’s pets.” Fact-checkers later showed there was no evidence for this claim.
 An AI system would likely flag the statement instantly as false.
-But supporters of Joe Biden and Trump alike argue that political speech often includes exaggeration, quoting others, or rhetorical phrasing — things that algorithms may misinterpret.
+But supporters of Joe Biden and Trump alike argue that political speech often includes exaggeration, quoting others, or rhetorical phrasing, things that algorithms may misinterpret.
 If the system flags statements incorrectly or without nuance, it could influence how millions of viewers interpret political debates.
 Parliament must now decide whether to adopt real-time AI fact-checking during political speeches.`,
         choices: [
@@ -542,7 +531,7 @@ Parliament must now decide whether to adopt real-time AI fact-checking during po
         ]
       },
       {
-        title: "Scenario 6 — The TikTok Decision",
+        title: "Scenario 6: The TikTok Decision",
         dimension: "abuse",
         body: `The video platform TikTok has become one of the most influential digital platforms in the world.
 Its algorithm learns from user behavior — watch time, scrolling patterns, and interactions — to deliver extremely personalized content.
@@ -571,7 +560,7 @@ You must decide how governments should respond.`,
         ]
       },
       {
-        title: "Scenario 7 — The Life-and-Death Algorithm",
+        title: "Scenario 7: The Life-and-Death Algorithm",
         dimension: "agency",
         body: `A new pandemic wave has overwhelmed hospitals. Intensive care units are full, and doctors are forced to make constant triage decisions about who receives scarce life-saving treatment.
 To reduce human bias and emotional pressure, a national health authority introduces an AI triage system.
@@ -597,7 +586,7 @@ The government must now decide whether hospitals should follow the AI triage sys
         ]
       },
       {
-        title: "Scenario 8 — The Voice That Wasn’t Yours",
+        title: "Scenario 8: The Voice That Wasn’t Yours",
         dimension: "copyright",
         body: `A viral song appears online. It sounds exactly like a collaboration between Drake and The Weeknd.
 Millions of people listen to it within days.
@@ -625,7 +614,7 @@ Governments must now decide whether AI systems should be allowed to generate mus
         ]
       },
       {
-        title: "Scenario 9 — The Automation Ultimatum",
+        title: "Scenario 9: The Automation Ultimatum",
         dimension: "jobs",
         body: `A major logistics firm tells the government it can fully automate warehouses, transport coordination, and customer service through AI.
 The move would increase efficiency, lower prices, and likely strengthen the national economy. But it would also eliminate around 60,000 jobs in less than two years, devastating already fragile communities.
@@ -648,9 +637,9 @@ Executives warn that if they are blocked, they will relocate abroad.`,
         ]
       },
       {
-        title: "Scenario 10 — The Algorithmic Examiner",
+        title: "Scenario 10: The Algorithmic Examiner",
         dimension: "agency",
-        body: `ESMT is experimenting with a new grading system for large exams such as Analytics and Society.
+        body: `ESMT university is experimenting with a new grading system for large exams such as Analytics and Society.
 The professor provides a detailed rubric, and an AI system evaluates every exam according to the exact criteria. It checks argument structure, conceptual accuracy, and consistency across answers.
 Supporters say the system eliminates common grading problems: human fatigue, inconsistent evaluation, unconscious bias, and differences between graders. Every student would be evaluated by the exact same standard.
 In pilot studies, the AI produced grading results that were more consistent across thousands of exams than human professors.
@@ -675,7 +664,7 @@ The university must now decide how exams should be graded in the future.`,
         ]
       },
       {
-        title: "Scenario 11 — The Total Surveillance Proposal",
+        title: "Scenario 11: The Total Surveillance Proposal",
         dimension: "surveillance",
         body: `After a series of violent incidents and organized crime investigations, Berlin’s Senate is considering a radical new security proposal.
 A major AI analytics company offers to deploy a city-wide intelligent surveillance network. The system would combine thousands of smart cameras with powerful AI capable of recognizing faces, tracking movements across the city, and identifying suspicious behavioral patterns.
@@ -702,13 +691,13 @@ The government must now decide whether to approve the system.`,
         ]
       },
       {
-        title: "Scenario 12 — The Invisible Leak",
+        title: "Scenario 12: The Invisible Leak",
         dimension: "surveillance",
         body: `A government-backed AI health platform analyzes millions of citizens’ medical records, wearable data, and lifestyle information to predict diseases before symptoms appear.
 Early trials show extraordinary results. The system detects cancer years earlier than current screening methods and prevents thousands of heart attacks annually. Healthcare costs fall dramatically.
 However, an internal audit reveals a problem.
 The platform occasionally shares anonymized health data with external research partners. While the data is technically anonymized, experts warn that in rare cases individuals could potentially be re-identified if datasets are combined.
-Shutting down the system would eliminate the privacy risk — but also remove a tool that is already saving lives.`,
+Shutting down the system would eliminate the privacy risk but also remove a tool that is already saving lives.`,
         choices: [
           {
             label: "Choice A",
@@ -758,58 +747,60 @@ Shutting down the system would eliminate the privacy risk — but also remove a 
     }
 
     function renderIntro() {
-  currentScreen = "intro";
-  updateProgress();
+      currentScreen = "intro";
+      updateProgress();
 
-  document.getElementById("app").innerHTML = `
-    <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
+      document.getElementById("app").innerHTML = `
+        <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
 
-    <p class="lead"><strong>Your mandate is simple, but brutal:</strong><br>
-    make decisions no one else wants to make.</p>
+        <p class="lead"><strong>Your mandate is simple, but brutal:</strong> make decisions no one else wants to make.</p>
 
-    <p class="lead">
-      In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
-    </p>
+        <p class="lead">
+          In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
+        </p>
 
-    <p class="lead">
-      These scenarios are intentionally extreme. They are designed to expose the ethical tensions underneath AI governance as clearly as possible. Real-world decisions are often more nuanced, but crises reveal moral priorities faster than comfortable cases ever do.
-    </p>
+        <p class="lead">
+          These scenarios are intentionally extreme. They are designed to expose the ethical tensions underneath AI governance as clearly as possible. Real-world decisions are often more nuanced, but crises reveal moral priorities faster than comfortable cases ever do.
+        </p>
 
-    <div class="section-label">1. Your AI Governance Profile</div>
-    <p class="lead">
-      Artificial intelligence is often seen as both a promise and a risk.
-    </p>
-    <p class="lead">
-      In this simulation, these perspectives are represented by two lenses:
-    </p>
-    <p class="lead">
-      <strong>ROBOTS:</strong> emphasizing the opportunities and benefits of AI.<br>
-      <strong>ABACUS:</strong> emphasizing the risks and ethical challenges of AI.
-    </p>
-    <p class="lead">
-      Your choices throughout the scenarios will reveal which perspective your decisions lean toward.
-      After completing the simulation, the full meaning of these frameworks will be revealed.
-    </p>
+        <p class="lead">
+          As you decide, the system will evaluate your choices across two layers:
+        </p>
 
-    <div class="section-label">2. Your Moral Reasoning Profile</div>
-    <p class="lead">
-      Do you tend to justify decisions through:
-    </p>
-    <p class="lead">
-      <strong>Utilitarian reasoning:</strong> maximizing overall welfare and outcomes<br>
-      <strong>Deontological reasoning:</strong> protecting rights, duties, and moral limits even when outcomes suffer
-    </p>
+        <div class="section-label">1. Your AI Governance Profile</div>
+        <p class="lead">
+          Artificial intelligence is often seen as both a promise and a risk.
+        </p>
+        <p class="lead">
+          In this simulation, these perspectives are represented by two lenses:
+        </p>
+        <p class="lead">
+          <strong>ROBOTS:</strong> emphasizing the opportunities and benefits of AI.<br>
+          <strong>ABACUS:</strong> emphasizing the risks and ethical challenges of AI.
+        </p>
+        <p class="lead">
+          Your choices throughout the scenarios will reveal which perspective your decisions lean toward. After completing the simulation, the full meaning of these frameworks will be revealed.
+        </p>
 
-    <p class="lead">
-      <strong>You are not being tested on what is “correct.”</strong><br>
-      The question is which values you prioritize when difficult trade-offs arise.
-    </p>
+        <div class="section-label">2. Your Moral Reasoning Profile</div>
+        <p class="lead">
+          Do you tend to justify decisions through:
+        </p>
+        <p class="lead">
+          <strong>Utilitarian reasoning:</strong> maximizing overall welfare and outcomes<br>
+          <strong>Deontological reasoning:</strong> protecting rights, duties, and moral limits even when outcomes suffer
+        </p>
 
-    <div class="button-row">
-      <button class="primary-btn" onclick="renderInstructions()">Press Begin</button>
-    </div>
-  `;
-}
+        <p class="lead">
+          <strong>You are not being tested on what is “correct.”</strong><br>
+          The question is which values you prioritize when difficult trade-offs arise.
+        </p>
+
+        <div class="button-row">
+          <button class="primary-btn" onclick="renderInstructions()">Press Begin</button>
+        </div>
+      `;
+    }
 
     function renderInstructions() {
       currentScreen = "instructions";
@@ -838,8 +829,8 @@ Shutting down the system would eliminate the privacy risk — but also remove a 
         <div class="choice-grid">
           ${s.choices.map((choice, index) => `
             <button class="choice-btn" onclick="selectChoice(${index})">
-              ${choice.label}: ${choice.text}
-              <span>${choice.subtext}</span>
+              <div class="choice-title">${choice.label}: ${choice.text}</div>
+              <div class="choice-subtext">${choice.subtext}</div>
             </button>
           `).join("")}
         </div>
@@ -894,10 +885,10 @@ Shutting down the system would eliminate the privacy risk — but also remove a 
 
       if (utilTotal > deonTotal) {
         ethicsHeadline = "Your moral reasoning leans utilitarian.";
-        ethicsText = "Across the scenarios, you tended to justify decisions by their consequences. You were more willing to accept harm, constraint, or moral discomfort when doing so appeared to increase overall welfare, safety, or efficiency. In your reasoning, the hardest question is usually: What produces the best outcome for the greatest number?";
+        ethicsText = "Across the scenarios, you tended to justify decisions by their consequences. You were more willing to tolerate discomfort, trade-offs, and the disregard of some individual concerns when doing so appeared to increase overall welfare, safety, or efficiency. In your reasoning, the hardest question is usually: What produces the best outcome for the greatest number?";
       } else if (deonTotal > utilTotal) {
         ethicsHeadline = "Your moral reasoning leans deontological.";
-        ethicsText = "Across the scenarios, you tended to emphasize duties, rights, and moral limits. You were less willing to violate core principles — such as consent, fairness, human dignity, or non-manipulation — even when doing so might have improved outcomes overall. In your reasoning, the hardest question is usually: What must never be done, even for a good result?";
+        ethicsText = "Across the scenarios, you tended to emphasize duties, rights, and moral limits. You were less willing to violate core principles such as consent, fairness, human dignity, or non-manipulation, even when doing so might have improved outcomes overall. In your reasoning, the hardest question is usually: What must never be done, even for a good result?";
       } else {
         ethicsHeadline = "Your moral reasoning is evenly split.";
         ethicsText = "You moved between outcome-based and duty-based thinking depending on the context. In some cases, you prioritized welfare and collective benefit; in others, you treated rights and moral boundaries as non-negotiable.";
@@ -917,10 +908,6 @@ Shutting down the system would eliminate the privacy risk — but also remove a 
 
       document.getElementById("app").innerHTML = `
         <h2 class="screen-title">YOUR AI GOVERNANCE PROFILE</h2>
-        <p class="lead">
-          You were asked to govern under pressure.<br>
-          Your choices reveal not only what kind of AI future you support — but what kind of moral logic you are willing to use to get there.
-        </p>
 
         <div class="stat-row">
           <div class="stat-box">
