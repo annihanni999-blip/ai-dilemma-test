@@ -51,14 +51,6 @@
   line-height: 1.5;
   font-size: 1rem;
 }
-    .instructions-img {
-  width: 100%;
-  max-height: 220px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-bottom: 18px;
-  opacity: 0.9;
-}
 
     .scenario-body {
   font-size: 1.05rem;
@@ -161,15 +153,6 @@
       letter-spacing: 0.12em;
       font-weight: 700;
     }
-    
-    .button-row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
 
     .choice-grid {
       display: grid;
@@ -838,37 +821,21 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
         </div>
       `;
     }
-    
-   function renderInstructions() {
-     currentScreen = "instructions";
-     updateProgress();
-     
-     document.getElementById("app").innerHTML = `
-     <img class="instructions-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995">
 
-    <h2 class="screen-title">Instructions</h2>
+    function renderInstructions() {
+      currentScreen = "instructions";
+      updateProgress();
 
-    <p class="lead">There are 12 choices in total.</p>
+      document.getElementById("app").innerHTML = `
+        <h2 class="screen-title">Instructions</h2>
+        <p class="lead">${instructionsText.replace(/\n/g, "<br>")}</p>
+        <div class="button-row">
+          <button class="secondary-btn" onclick="renderIntro()">Back</button>
+          <button class="primary-btn" onclick="renderScenario()">Start Scenario 1</button>
+        </div>
+      `;
+    }
 
-    <p class="lead">Each choice contributes to:</p>
-
-    <ul class="bullets">
-      <li>your AI perspective</li>
-      <li>your moral reasoning style</li>
-    </ul>
-
-    <p class="lead">Some choices will feel uncomfortable. That is intentional.</p>
-
-    <p class="lead">Think carefully, but do not overanalyze.</p>
-
-    <p class="lead">Trust your judgment and follow your intuition.</p>
-
-    <div class="button-row">
-      <button class="secondary-btn" onclick="renderIntro()">Back</button>
-      <button class="primary-btn" onclick="renderScenario()">Start Scenario 1</button>
-    </div>
-  `;
-}
     function renderScenario() {
       currentScreen = "scenario";
       updateProgress();
