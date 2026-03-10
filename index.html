@@ -47,6 +47,17 @@
       margin-bottom: 20px;
     }
 
+    .instructions {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+    .scenario-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 750px;
+}
+
     .eyebrow {
       color: var(--cyan);
       text-transform: uppercase;
@@ -125,6 +136,13 @@
       line-height: 1.42;
       margin: 0 0 8px;
     }
+
+    .mandate {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 10px 0 14px 0;
+}
 
     .section-label {
       margin-top: 14px;
@@ -753,7 +771,9 @@ Shutting down the system would eliminate the privacy risk but also remove a tool
       document.getElementById("app").innerHTML = `
         <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
 
-        <p class="lead"><strong>Your mandate is simple, but brutal:</strong> make decisions no one else wants to make.</p>
+        <p class="mandate">
+Your mandate is simple, but brutal: make decisions no one else wants to make.
+</p>
 
         <p class="lead">
           In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
@@ -808,7 +828,7 @@ Shutting down the system would eliminate the privacy risk but also remove a tool
 
       document.getElementById("app").innerHTML = `
         <h2 class="screen-title">Instructions</h2>
-        <p class="lead">${instructionsText.replace(/\n/g, "<br><br>")}</p>
+        <p class="lead">${instructionsText.replace(/\n/g, "<br>")}</p>
         <div class="button-row">
           <button class="secondary-btn" onclick="renderIntro()">Back</button>
           <button class="primary-btn" onclick="renderScenario()">Start Scenario 1</button>
