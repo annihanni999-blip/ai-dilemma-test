@@ -114,21 +114,21 @@
     }
 
     .screen-title {
-      margin: 0 0 18px;
-      font-size: clamp(1.45rem, 3vw, 2rem);
-      line-height: 1.1;
+      margin: 0 0 14px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.15;
     }
 
     .lead {
       color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      margin: 14px;
+      font-size: 1rem;
+      line-height: 1.45;
+      margin: 0 0 10px;
     }
 
     .section-label {
-      margin-top: 24px;
-      margin-bottom: 8px;
+      margin-top: 18px;
+      margin-bottom: 6px;
       color: var(--cyan);
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -752,38 +752,58 @@ Shutting down the system would eliminate the privacy risk — but also remove a 
     }
 
     function renderIntro() {
-      currentScreen = "intro";
-      updateProgress();
+  currentScreen = "intro";
+  updateProgress();
 
-      document.getElementById("app").innerHTML = `
-        <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
-        <p class="lead"><strong>Your mandate is simple, but brutal:</strong><br>make decisions no one else wants to make.</p>
-        <p class="lead">${introText.replace(/\n/g, "<br><br>")}</p>
+  document.getElementById("app").innerHTML = `
+    <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
 
-        <div class="section-label">1. Your AI Governance Profile</div>
-        <p class="lead">
-          Artificial intelligence is often seen as both a promise and a risk.<br><br>
-          In this simulation, these perspectives are represented by two lenses:<br><br>
-          <strong>ROBOTS</strong>: emphasizing the opportunities and benefits of AI.<br>
-          <strong>ABACUS</strong>: emphasizing the risks and ethical challenges of AI.<br><br>
-          Your choices throughout the scenarios will reveal which perspective your decisions lean toward.<br>
-          After completing the simulation, the full meaning of these frameworks will be revealed.
-        </p>
+    <p class="lead"><strong>Your mandate is simple, but brutal:</strong><br>
+    make decisions no one else wants to make.</p>
 
-        <div class="section-label">2. Your Moral Reasoning Profile</div>
-        <p class="lead">
-          Do you tend to justify decisions through:<br><br>
-          <strong>Utilitarian reasoning</strong>: maximizing overall welfare and outcomes<br>
-          <strong>Deontological reasoning</strong>: protecting rights, duties, and moral limits even when outcomes suffer
-        </p>
+    <p class="lead">
+      In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
+    </p>
 
-        <p class="lead"><strong>You are not being tested on what is “correct”.</strong><br>The question is which values you prioritize when difficult trade-offs arise.</p>
+    <p class="lead">
+      These scenarios are intentionally extreme. They are designed to expose the ethical tensions underneath AI governance as clearly as possible. Real-world decisions are often more nuanced, but crises reveal moral priorities faster than comfortable cases ever do.
+    </p>
 
-        <div class="button-row">
-          <button class="primary-btn" onclick="renderInstructions()">Press Begin</button>
-        </div>
-      `;
-    }
+    <div class="section-label">1. Your AI Governance Profile</div>
+    <p class="lead">
+      Artificial intelligence is often seen as both a promise and a risk.
+    </p>
+    <p class="lead">
+      In this simulation, these perspectives are represented by two lenses:
+    </p>
+    <p class="lead">
+      <strong>ROBOTS:</strong> emphasizing the opportunities and benefits of AI.<br>
+      <strong>ABACUS:</strong> emphasizing the risks and ethical challenges of AI.
+    </p>
+    <p class="lead">
+      Your choices throughout the scenarios will reveal which perspective your decisions lean toward.
+      After completing the simulation, the full meaning of these frameworks will be revealed.
+    </p>
+
+    <div class="section-label">2. Your Moral Reasoning Profile</div>
+    <p class="lead">
+      Do you tend to justify decisions through:
+    </p>
+    <p class="lead">
+      <strong>Utilitarian reasoning:</strong> maximizing overall welfare and outcomes<br>
+      <strong>Deontological reasoning:</strong> protecting rights, duties, and moral limits even when outcomes suffer
+    </p>
+
+    <p class="lead">
+      <strong>You are not being tested on what is “correct.”</strong><br>
+      The question is which values you prioritize when difficult trade-offs arise.
+    </p>
+
+    <div class="button-row">
+      <button class="primary-btn" onclick="renderInstructions()">Press Begin</button>
+    </div>
+  `;
+}
 
     function renderInstructions() {
       currentScreen = "instructions";
