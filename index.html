@@ -94,6 +94,42 @@
       backdrop-filter: blur(12px);
     }
 
+    .instructions-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: center;
+}
+
+.instructions-image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions-image-box img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+}
+
+@media (max-width: 800px) {
+  .instructions-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .instructions-image-box {
+    order: -1;
+  }
+
+  .instructions-image-box img {
+    max-width: 220px;
+  }
+}
     .progress-wrap {
       margin: 0 0 20px;
     }
@@ -823,18 +859,26 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
     }
 
     function renderInstructions() {
-      currentScreen = "instructions";
-      updateProgress();
+  currentScreen = "instructions";
+  updateProgress();
 
-      document.getElementById("app").innerHTML = `
+  document.getElementById("app").innerHTML = `
+    <div class="instructions-layout">
+      <div>
         <h2 class="screen-title">Instructions</h2>
         <p class="lead">${instructionsText.replace(/\n/g, "<br>")}</p>
         <div class="button-row">
           <button class="secondary-btn" onclick="renderIntro()">Back</button>
           <button class="primary-btn" onclick="renderScenario()">Start Scenario 1</button>
         </div>
-      `;
-    }
+      </div>
+
+      <div class="instructions-image-box">
+        <img src="images:AI_image_introduction.jpeg" alt="AI introduction image">
+      </div>
+    </div>
+  `;
+}
 
     function renderScenario() {
       currentScreen = "scenario";
