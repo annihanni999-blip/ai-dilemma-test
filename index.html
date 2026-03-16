@@ -94,6 +94,26 @@
       backdrop-filter: blur(12px);
     }
 
+    @keyframes clickGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(47,231,255,0);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(47,231,255,0.9),
+                0 0 60px rgba(255,79,216,0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(47,231,255,0);
+  }
+}
+
+.button-glow {
+  animation: clickGlow 0.5s ease;
+}
+
     .instructions-layout {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -848,12 +868,12 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
         </p>
 
         <p class="lead">
-          <strong>You are not being tested on what is “correct.”</strong><br>
+          <strong>You are not being tested on what is “correct”.</strong><br>
           The question is which values you prioritize when difficult trade-offs arise.
         </p>
 
         <div class="button-row">
-          <button class="primary-btn" onclick="renderInstructions()">Press Begin</button>
+          <button class="primary-btn" onclick="beginSimulation(this)">Press Begin</button>
         </div>
       `;
     }
@@ -869,7 +889,7 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
         <p class="lead">${instructionsText.replace(/\n/g, "<br>")}</p>
         <div class="button-row">
           <button class="secondary-btn" onclick="renderIntro()">Back</button>
-          <button class="primary-btn" onclick="renderScenario()">Start Scenario 1</button>
+          <button class="primary-btn" onclick="startFirstScenario(this)">Start Scenario 1</button>
         </div>
       </div>
 
@@ -921,6 +941,21 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
       } else {
         renderResults();
       }
+    }
+
+    function beginSimulation(btn) {
+      btn.disabled = true;
+      btn.classList.add("button-glow");
+      setTimeout(() => {
+        renderInstructions();
+      }, 450);
+    }
+    function startFirstScenario(btn) {
+      btn.disabled = true;
+      btn.classList.add("button-glow");
+      setTimeout(() => {
+        renderScenario();
+      }, 450);
     }
 
     function getDimensionResult(dimensionKey) {
