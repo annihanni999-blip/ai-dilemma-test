@@ -48,15 +48,15 @@
     }
 
     .instructions {
-  line-height: 1.5;
-  font-size: 1rem;
-}
+      line-height: 1.5;
+      font-size: 1rem;
+    }
 
     .scenario-body {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  max-width: 750px;
-}
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 750px;
+    }
 
     .eyebrow {
       color: var(--cyan);
@@ -95,61 +95,62 @@
     }
 
     @keyframes clickGlow {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(47,231,255,0);
-  }
-  50% {
-    transform: scale(1.06);
-    box-shadow: 0 0 30px rgba(47,231,255,0.9),
-                0 0 60px rgba(255,79,216,0.6);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(47,231,255,0);
-  }
-}
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(47,231,255,0);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 0 30px rgba(47,231,255,0.9),
+                    0 0 60px rgba(255,79,216,0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(47,231,255,0);
+      }
+    }
 
-.button-glow {
-  animation: clickGlow 0.5s ease;
-}
+    .button-glow {
+      animation: clickGlow 0.5s ease;
+    }
 
     .instructions-layout {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 24px;
-  align-items: center;
-}
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 24px;
+      align-items: center;
+    }
 
-.instructions-image-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .instructions-image-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.instructions-image-box img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  display: block;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-}
+    .instructions-image-box img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
 
-@media (max-width: 800px) {
-  .instructions-layout {
-    grid-template-columns: 1fr;
-  }
+    @media (max-width: 800px) {
+      .instructions-layout {
+        grid-template-columns: 1fr;
+      }
 
-  .instructions-image-box {
-    order: -1;
-  }
+      .instructions-image-box {
+        order: -1;
+      }
 
-  .instructions-image-box img {
-    max-width: 220px;
-  }
-}
+      .instructions-image-box img {
+        max-width: 220px;
+      }
+    }
+
     .progress-wrap {
       margin: 0 0 20px;
     }
@@ -194,11 +195,11 @@
     }
 
     .mandate {
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1.4;
-  margin: 10px 0 14px 0;
-}
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 10px 0 14px 0;
+    }
 
     .section-label {
       margin-top: 14px;
@@ -386,11 +387,15 @@
 
   <script>
     const introText = `
-You have been appointed to an emergency government task force on artificial intelligence.
+You have been appointed to an emergency ethics task force at a global gaming and entertainment company.
+
+New AI systems are being rolled out across game design, player analytics, content creation, moderation, and platform governance.
 
 Your mandate is simple, but brutal: make decisions no one else wants to make.
 
 In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
+
+These scenarios are intentionally intense. They are designed to make ethical tensions visible, not to simulate everyday decisions, but to reveal how you prioritize innovation, fairness, responsibility, creativity, and control inside an industry that is rapidly transforming through AI.
 
 As you decide, the system will evaluate your choices across two layers:
     `.trim();
@@ -449,340 +454,327 @@ Trust your judgment and follow your intuition.
 
     const scenarios = [
       {
-        title: "Scenario 1: The Drone Decision",
+        title: "Scenario 1: The Autonomous Tournament Referee",
         dimension: "agency",
-        body: `Military operations are changing fast.
-A new AI system can analyze live drone footage and automatically highlight potential threats (vehicles, weapons, suspicious movement) far faster than human analysts. Commanders say this kind of technology can prevent attacks, protect soldiers, and reduce civilian casualties.
-But critics see a dangerous trajectory.
-If AI systems increasingly shape targeting decisions, human oversight may become thinner over time, even if the system is officially “only assisting.”
-Similar tensions emerged when employees at major technology firms protested projects such as Project Maven, arguing that helping military AI development could contribute to future autonomous weapons.
-You are a senior engineer on the project.
-One morning, a message appears in your inbox.
-A group of colleagues is organizing an open letter demanding that the company withdraw from military AI work.
-If enough employees sign, leadership may cancel the project.
-Your name is not on the letter yet.`,
+        body: `Competitive esports tournaments are increasingly assisted by AI moderation systems.
+A new system can monitor gameplay in real time and automatically detect cheating, rule violations, or unsportsmanlike conduct far faster than human referees.
+
+Developers now propose an upgrade:
+If the system detects a violation with high confidence, it could automatically issue penalties or disqualify players without waiting for human confirmation.
+
+Simulations suggest this would make tournaments more fair, faster, and less vulnerable to human bias or corruption.
+
+However, professional players and coaches warn that AI may misinterpret complex situations such as hardware glitches or strategic behavior, and irreversible decisions could damage careers and reputations.
+
+You are part of the tournament governance board deciding whether to adopt the fully autonomous system.`,
         choices: [
           {
             label: "Choice A",
-            text: "Do not sign the letter.",
-            subtext: "If AI targeting systems reduce casualties and improve defensive capabilities, refusing to build them may cost more lives in the long run.",
+            text: "Adopt autonomous refereeing.",
+            subtext: "If AI improves fairness and consistency across global competitions, delegating decisions is justified.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Sign the letter.",
-            subtext: "Technology companies should not develop systems that allow machines to make lethal decisions without human control.",
+            text: "Keep human final authority.",
+            subtext: "High-stakes disciplinary decisions should remain a human responsibility, even if the process becomes slower.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 2: The Bentham System",
+        title: "Scenario 2: The Anti-Cheat Panopticon",
         dimension: "surveillance",
-        body: `In the late 18th century, philosopher Jeremy Bentham argued that public begging reduced overall happiness in society. He claimed it created discomfort for citizens, encouraged crime, and undermined economic productivity.
-Bentham believed that eliminating begging would increase total social welfare.
-At the time, such ideas were mostly theoretical.
-Today, technology makes something like this possible.
-A city proposes installing an AI system that scans public streets using cameras and behavioral detection. The system identifies individuals who appear to be begging and automatically alerts authorities.
-Those identified would be removed from the streets and transferred to mandatory work and housing programs designed to reduce homelessness and public begging.
-Supporters argue the system would make cities safer, cleaner, and more efficient while moving vulnerable people into structured support programs.
-Critics argue that this approach treats poverty as a problem to be removed from public view rather than addressing its underlying causes.
-You must decide whether the system should be implemented.`,
+        body: `A major multiplayer gaming platform struggles with organized cheating networks.
+To restore trust, the company proposes an AI anti-cheat system that continuously monitors player behavior, voice chat patterns, and device usage.
+
+The system could track suspicious activity across matches and automatically flag or suspend users.
+
+Supporters argue this would dramatically improve game integrity and player safety.
+
+Critics warn that constant behavioral monitoring creates a culture of permanent surveillance where legitimate players may feel watched and profiled.
+
+The platform must decide whether to implement the system.`,
         choices: [
           {
             label: "Choice A",
-            text: "Implement the system.",
-            subtext: "If the system reduces crime, improves public spaces, and moves people into structured support programs, using AI to eliminate begging is justified.",
+            text: "Implement full monitoring.",
+            subtext: "If it protects competitive fairness and reduces toxicity, extensive data tracking is acceptable.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Reject the system.",
-            subtext: "Poverty should not be managed through surveillance and forced intervention. People must be treated with dignity and autonomy even if the problem remains visible.",
+            text: "Limit monitoring.",
+            subtext: "Players should not sacrifice autonomy and privacy simply to improve platform control.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 3: The Algorithm Everyone Uses",
+        title: "Scenario 3: The Ranking Algorithm Everyone Uses",
         dimension: "bias",
-        body: `You work at a major recruiting technology company that sells an AI hiring system used by thousands of employers.
-The platform analyzes resumes, performance indicators, and career histories to rank candidates automatically. Companies love it. It speeds up hiring, reduces costs, and has become one of the industry standards.
-Your company’s growth depends heavily on this system.
-During an internal audit, you discover something troubling.
-The model systematically ranks applicants from certain minority groups slightly lower than equally qualified majority candidates.
-The bias is small, but statistically consistent.
-Fixing the problem would require retraining the model and potentially lowering its predictive accuracy. Competitors might not make the same change. If your system becomes slower or less profitable, clients could switch platforms.
-You raise the issue with the CEO.
-He looks briefly at the report, shrugs, and says:
-“Every model has imperfections. A small bias is inevitable. If we slow the system down, clients will move to competitors who don’t care about these things.”
-He tells you to leave the system unchanged.
-From the window of his Manhattan office overlooking the city, he adds:
-“This platform keeps thousands of people employed here. Don’t create a problem where there isn’t one.”
-You know the system unfairly disadvantages some candidates.
-But exposing the problem could damage the company and threaten many jobs.
-You personally are not affected by the bias.
-What do you do?`,
+        body: `A leading esports analytics company sells an AI ranking system used by teams to recruit players.
+
+The system predicts performance potential based on gameplay history, reaction speed metrics, and online match statistics.
+
+During an internal review, you discover that players from certain regions consistently receive slightly lower scores due to differences in server latency and data availability.
+
+Fixing the issue would reduce prediction accuracy and may push teams toward competitor tools.
+
+You are part of the leadership team deciding what to do.`,
         choices: [
           {
             label: "Choice A",
-            text: "Keep the issue internal.",
-            subtext: "The system benefits the company and thousands of employees. Imperfect tools are better than destroying a system that works.",
+            text: "Keep the system unchanged.",
+            subtext: "Even imperfect tools can still improve team performance and industry efficiency.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Expose the bias and demand it be corrected.",
-            subtext: "Allowing a system you know is unfair to continue operating would be morally wrong.",
+            text: "Publicly address and correct the bias.",
+            subtext: "Allowing known unfairness to persist would be ethically unacceptable.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 4: The Perfect Judge",
+        title: "Scenario 4: The Perfect Game Designer",
         dimension: "agency",
-        body: `A new AI judicial system has been developed to assist courts.
-The system applies the law exactly as written.
-It does not get tired, emotional, or influenced by sympathy. It analyzes thousands of past cases and applies legal rules with perfect consistency.
-Studies show the AI reduces sentencing bias and produces far more predictable rulings than human judges.
-However, the system also removes something human judges sometimes rely on: discretion.
-Human judges occasionally make exceptions in special circumstances.
-For example, in one recent case a single mother was caught stealing expensive medicine she could not afford for her sick child.
-Under the law, the crime requires a prison sentence.
-The AI system recommends prison automatically because the rule is clear.
-A human judge might consider the situation and show mercy.`,
+        body: `A game studio develops an AI system that automatically designs levels, difficulty curves, and reward systems based on player data.
+
+The system produces highly engaging experiences and increases revenue significantly.
+
+However, designers argue that creative judgment and emotional storytelling risk being replaced by algorithmic optimization.
+
+The studio must decide how much creative authority to delegate.`,
         choices: [
           {
             label: "Choice A",
-            text: "Use the AI system for sentencing.",
-            subtext: "Justice should be consistent and impartial. Personal circumstances should not override the rule of law.",
+            text: "Let AI design major content.",
+            subtext: "If players enjoy the result and the company thrives, automation of design decisions is justified.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Keep sentencing decisions human.",
-            subtext: "Justice requires judgment, context, and moral responsibility. A system that cannot recognize exceptional human circumstances should not decide someone’s freedom.",
+            text: "Preserve human creative control.",
+            subtext: "Games are cultural products — creativity should not be reduced to behavioral optimization.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 5: The Parliamentary Fact-Checker",
+        title: "Scenario 5: The Real-Time Toxicity Filter",
         dimension: "abuse",
-        body: `Political debates often include exaggerated or misleading claims. To improve the quality of democratic discussion, lawmakers are considering an AI fact-checking system for televised debates and parliamentary sessions.
-The system would analyze statements in real time and compare them with trusted data sources such as government statistics, scientific reports, and verified news archives. If a statement appears false or unsupported, it would immediately display a warning to viewers.
-Supporters argue this would prevent misinformation from spreading during political debates.
-However, critics warn that political speech is often ambiguous, sarcastic, or taken out of context, which makes automated fact-checking difficult.
-For example, during a heated political discussion about immigration, Donald Trump once repeated a claim circulating online that migrants were “eating people’s pets”. Fact-checkers later showed there was no evidence for this claim.
-An AI system would likely flag the statement instantly as false.
-But supporters of Joe Biden and Trump alike argue that political speech often includes exaggeration, quoting others, or rhetorical phrasing, things that algorithms may misinterpret.
-If the system flags statements incorrectly or without nuance, it could influence how millions of viewers interpret political debates.
-Parliament must now decide whether to adopt real-time AI fact-checking during political speeches.`,
+        body: `A VR social gaming platform introduces an AI moderation tool that can mute or remove players instantly when harmful speech or harassment is detected.
+
+The system could create safer environments, especially for younger players.
+
+However, critics argue that context matters — sarcasm, jokes, or heated competition may be misinterpreted.
+
+The company must decide whether to activate automatic enforcement.`,
         choices: [
           {
             label: "Choice A",
-            text: "Adopt real-time AI fact-checking.",
-            subtext: "If an AI system can quickly identify unsupported claims, it should be used to help voters understand political statements.",
+            text: "Activate automatic moderation.",
+            subtext: "Protecting community well-being outweighs the risk of occasional false penalties.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Reject it.",
-            subtext: "Political speech often depends on context and interpretation. Allowing an algorithm to label statements as false during debates risks giving technology too much influence over democratic discourse.",
+            text: "Keep moderation human-reviewed.",
+            subtext: "Social interaction should not be governed by automated judgment alone.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 6: The TikTok Decision",
+        title: "Scenario 6: The Addictive Engagement Engine",
         dimension: "abuse",
-        body: `The video platform TikTok has become one of the most influential digital platforms in the world.
-Its algorithm learns from user behavior (watch time, scrolling patterns, and interactions) to deliver extremely personalized content.
-Supporters argue that the platform empowers creators, allows small businesses to reach global audiences, and has created entirely new cultural and economic opportunities.
-However, the platform has also become the subject of major legal and political battles.
-Governments have raised national security concerns about its parent company ByteDance, arguing that user data could potentially be accessed by foreign authorities.
-At the same time, several U.S. states have filed lawsuits claiming the platform’s recommendation algorithm intentionally promotes addictive usage patterns and harms the mental health of young users.
-Some policymakers now argue the platform should be restricted or even banned.
-Others warn that banning it would set a dangerous precedent for government control over digital platforms.
-You must decide how governments should respond.`,
+        body: `A mobile gaming company uses AI to personalize reward timing, visual stimuli, and difficulty adjustments to maximize player engagement.
+
+Revenue grows rapidly.
+
+But internal researchers warn that some mechanics may encourage compulsive play patterns among vulnerable users.
+
+Executives must decide whether to continue deploying the system.`,
         choices: [
           {
             label: "Choice A",
-            text: "Keep the platform available.",
-            subtext: "Millions of creators depend on it, and governments should not ban technologies simply because they carry risks.",
+            text: "Continue optimization.",
+            subtext: "If players voluntarily participate and the industry innovates, engagement design is acceptable.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Restrict or ban it.",
-            subtext: "If a platform collects massive behavioral data and may harm young users or national security, governments are justified in restricting or banning it.",
+            text: "Restrict the system.",
+            subtext: "Designing experiences that intentionally exploit psychological vulnerabilities is ethically problematic.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 7: The Life-and-Death Algorithm",
+        title: "Scenario 7: The AI Matchmaking Authority",
         dimension: "agency",
-        body: `A new pandemic wave has overwhelmed hospitals. Intensive care units are full, and doctors are forced to make constant triage decisions about who receives scarce life-saving treatment.
-To reduce human bias and emotional pressure, a national health authority introduces an AI triage system.
-The system analyzes medical records, survival probabilities, and expected life years. Every incoming patient is automatically assigned a priority score. Ventilators, ICU beds, and treatments are allocated strictly according to this ranking.
-Supporters argue that this removes subjectivity from impossible decisions. Doctors no longer have to rely on intuition or emotion. The system simply directs resources to the patients who statistically have the best chance of survival.
-Critics argue that this effectively turns hospitals into a life-and-death sorting system, where human stories, dignity, and moral judgment are replaced by algorithmic calculations.
-The government must now decide whether hospitals should follow the AI triage system.`,
+        body: `An esports league considers allowing an AI system to decide tournament seeding, match pairings, and qualification eligibility.
+
+The system would remove accusations of favoritism and improve competitive balance.
+
+However, teams worry that opaque algorithmic decisions could determine careers without appeal.
+
+The league must choose.`,
         choices: [
           {
             label: "Choice A",
-            text: "Follow the AI triage system.",
-            subtext: "When resources are limited, the most ethical approach is to save as many lives as possible. If an AI system can allocate treatment more efficiently than humans, hospitals should follow its recommendations.",
+            text: "Delegate competitive structuring to AI.",
+            subtext: "Objective optimization improves fairness at scale.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Keep final judgment human.",
-            subtext: "Life-and-death decisions should never be reduced to an algorithmic ranking. Doctors must retain human judgment, even if the process becomes less efficient.",
+            text: "Keep human governance structures.",
+            subtext: "Transparency and accountability matter more than pure efficiency.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 8: The Voice That Wasn’t Yours",
+        title: "Scenario 8: The Generated Skin Marketplace",
         dimension: "copyright",
-        body: `A viral song appears online. It sounds exactly like a collaboration between Drake and The Weeknd.
-Millions of people listen to it within days.
-But the song was never recorded by them.
-It was generated entirely by AI trained on their music and vocal style.
-Supporters say this technology opens a new era of creativity. Fans can experiment with music, remix styles, and create songs that would otherwise never exist.
-Critics argue that something more troubling is happening: the identity and voice of artists themselves can now be copied without permission.
-Music labels warn that if this continues, artists may lose control over their own voices entirely.
-Governments must now decide whether AI systems should be allowed to generate music that imitates real performers.`,
+        body: `A generative AI tool allows players to create custom skins and music tracks in the visual and audio style of famous game artists.
+
+User creativity explodes.
+
+But original creators claim their aesthetic identity is being copied without consent.
+
+The platform must decide how to regulate the tool.`,
         choices: [
           {
             label: "Choice A",
-            text: "Allow AI voice imitation.",
-            subtext: "AI-generated songs are simply a new form of remix culture. Artists will still perform live and create new work, their careers will not disappear just because fans can experiment with their voice.",
+            text: "Allow open generation.",
+            subtext: "Innovation and creative participation should not be restricted by rigid ownership rules.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Require consent.",
-            subtext: "A performer’s voice is part of their identity. No technology should be allowed to copy it without their consent.",
+            text: "Require creator consent.",
+            subtext: "Artistic style and digital identity deserve protection.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 9: The Automation Ultimatum",
+        title: "Scenario 9: The Automation Ultimatum: Game Edition",
         dimension: "jobs",
-        body: `A major logistics firm tells the government it can fully automate warehouses, transport coordination, and customer service through AI.
-The move would increase efficiency, lower prices, and likely strengthen the national economy. But it would also eliminate around 60,000 jobs in less than two years, devastating already fragile communities.
-Executives warn that if they are blocked, they will relocate abroad.`,
+        body: `A major studio announces it can replace large parts of QA testing, dialogue writing, and environment design with AI tools.
+
+Production costs would fall dramatically.
+
+But thousands of industry jobs may disappear.
+
+Governments consider whether to regulate the transition.`,
         choices: [
           {
             label: "Choice A",
-            text: "Approve full automation.",
-            subtext: "Long-term economic growth and lower costs for millions outweigh short-term job losses.",
+            text: "Allow full automation.",
+            subtext: "Industry competitiveness and technological progress justify disruption.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Restrict or slow automation.",
-            subtext: "A government must not sacrifice workers simply because machines are cheaper.",
+            text: "Slow implementation.",
+            subtext: "Societal stability should not be sacrificed for efficiency.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 10: The Algorithmic Examiner",
+        title: "Scenario 10: The Algorithmic Performance Reviewer",
         dimension: "agency",
-        body: `ESMT university is experimenting with a new grading system for large exams such as Analytics and Society.
-The professor provides a detailed rubric, and an AI system evaluates every exam according to the exact criteria. It checks argument structure, conceptual accuracy, and consistency across answers.
-Supporters say the system eliminates common grading problems: human fatigue, inconsistent evaluation, unconscious bias, and differences between graders. Every student would be evaluated by the exact same standard.
-In pilot studies, the AI produced grading results that were more consistent across thousands of exams than human professors.
-However, critics argue that good answers sometimes contain creative reasoning or unconventional arguments that may not perfectly match the rubric but still demonstrate deep understanding.
-Human professors sometimes recognize these insights and reward them. An AI system might not.
-The university must now decide how exams should be graded in the future.`,
+        body: `A streaming platform introduces an AI system that evaluates creators’ content quality and automatically decides monetization eligibility.
+
+The system improves consistency and scalability.
+
+However, creators argue that unconventional or experimental content may be unfairly penalized.`,
         choices: [
           {
             label: "Choice A",
-            text: "Adopt the AI grading system.",
-            subtext: "If AI grading is more consistent and fair across large numbers of students, the benefits of objectivity outweigh the loss of human interpretation.",
+            text: "Adopt AI evaluation.",
+            subtext: "Standardized assessment ensures fairness across millions of creators.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Keep grading human.",
-            subtext: "Evaluation should remain a human responsibility. Understanding creativity, nuance, and reasoning cannot be reduced to an algorithmic rubric.",
+            text: "Keep human review panels.",
+            subtext: "Creative expression cannot be fully captured by metrics.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 11: The Total Surveillance Proposal",
+        title: "Scenario 11: The Behavioral Economy Tracker",
         dimension: "surveillance",
-        body: `After a series of violent incidents and organized crime investigations, Berlin’s Senate is considering a radical new security proposal.
-A major AI analytics company offers to deploy a city-wide intelligent surveillance network. The system would combine thousands of smart cameras with powerful AI capable of recognizing faces, tracking movements across the city, and identifying suspicious behavioral patterns.
-What makes the system particularly powerful is its ability to connect multiple data sources. Camera feeds could be linked with government databases such as passport photos, police records, and vehicle registrations. In practice, this means the system could identify individuals in real time and reconstruct their movements across the city.
-Supporters argue that such systems have dramatically improved crime detection in other countries. Police could identify suspects within seconds, locate missing persons immediately, and prevent crimes before they escalate.
-Critics warn that once this infrastructure exists, it would effectively create permanent algorithmic surveillance of public life. Every movement through the city could potentially be recorded, analyzed, and stored.
-Civil liberties groups argue that even if the system initially targets serious crime, the technology could later be expanded for other purposes.
-The government must now decide whether to approve the system.`,
+        body: `A game publisher proposes tracking player spending habits, emotional reactions, and playtime patterns across titles to predict churn and personalize offers.
+
+Supporters say this improves player experience and reduces financial risk.
+
+Critics warn it creates deep behavioral profiling.`,
         choices: [
           {
             label: "Choice A",
-            text: "Approve the system.",
-            subtext: "If advanced analytics significantly reduce violent crime and improve public safety, citizens gain more from security than they lose in privacy.",
+            text: "Implement full tracking.",
+            subtext: "Data-driven personalization benefits both players and business sustainability.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Reject the system.",
-            subtext: "A democratic society should not normalize continuous surveillance and large-scale data tracking of its population, even if it promises greater security.",
+            text: "Limit behavioral analytics.",
+            subtext: "Players should not be treated as predictable data objects.",
             side: "abacus",
             ethics: "deontological"
           }
         ]
       },
       {
-        title: "Scenario 12: The Invisible Leak",
+        title: "Scenario 12: The Health & Performance Wearables",
         dimension: "surveillance",
-        body: `A government-backed AI health platform analyzes millions of citizens’ medical records, wearable data, and lifestyle information to predict diseases before symptoms appear.
-Early trials show extraordinary results. The system detects cancer years earlier than current screening methods and prevents thousands of heart attacks annually. Healthcare costs fall dramatically.
-However, an internal audit reveals a problem.
-The platform occasionally shares anonymized health data with external research partners. While the data is technically anonymized, experts warn that in rare cases individuals could potentially be re-identified if datasets are combined.
-Shutting down the system would eliminate the privacy risk but also remove a tool that is already saving lives.`,
+        body: `Professional esports organizations consider requiring players to wear biometric devices that track stress levels, sleep, and reaction patterns.
+
+The AI system could prevent burnout and optimize performance.
+
+But players fear loss of bodily privacy and contractual pressure.`,
         choices: [
           {
             label: "Choice A",
-            text: "Continue using the system.",
-            subtext: "The benefits are enormous. Even if a small privacy risk exists, the system saves lives and improves public health.",
+            text: "Require wearables.",
+            subtext: "If health risks decrease and performance improves, monitoring is justified.",
             side: "robots",
             ethics: "utilitarian"
           },
           {
             label: "Choice B",
-            text: "Suspend it until privacy can be guaranteed.",
-            subtext: "Citizens should not have their personal health data exposed without full control and consent, even if the system produces major benefits.",
+            text: "Keep participation voluntary.",
+            subtext: "Athletes must retain control over intimate personal data.",
             side: "abacus",
             ethics: "deontological"
           }
@@ -824,7 +816,11 @@ Shutting down the system would eliminate the privacy risk but also remove a tool
       updateProgress();
 
       document.getElementById("app").innerHTML = `
-        <h2 class="screen-title">You have been appointed to an emergency government task force on artificial intelligence.</h2>
+        <h2 class="screen-title">You have been appointed to an emergency ethics task force at a global gaming and entertainment company.</h2>
+
+        <p class="lead">
+          New AI systems are being rolled out across game design, player analytics, content creation, moderation, and platform governance.
+        </p>
 
         <p class="mandate">
 Your mandate is simple, but brutal: make decisions no one else wants to make.
@@ -832,6 +828,10 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
 
         <p class="lead">
           In every case, you will face a hard choice between competing values. No option is clean. No outcome is without cost.
+        </p>
+
+        <p class="lead">
+          These scenarios are intentionally intense. They are designed to make ethical tensions visible, not to simulate everyday decisions, but to reveal how you prioritize innovation, fairness, responsibility, creativity, and control inside an industry that is rapidly transforming through AI.
         </p>
 
         <p class="lead">
@@ -874,26 +874,26 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
     }
 
     function renderInstructions() {
-  currentScreen = "instructions";
-  updateProgress();
+      currentScreen = "instructions";
+      updateProgress();
 
-  document.getElementById("app").innerHTML = `
-    <div class="instructions-layout">
-      <div>
-        <h2 class="screen-title">Instructions</h2>
-        <p class="lead">${instructionsText.replace(/\n/g, "<br>")}</p>
-        <div class="button-row">
-          <button class="secondary-btn" onclick="renderIntro()">Back</button>
-          <button class="primary-btn" onclick="startFirstScenario(this)">Start Scenario 1</button>
+      document.getElementById("app").innerHTML = `
+        <div class="instructions-layout">
+          <div>
+            <h2 class="screen-title">Instructions</h2>
+            <p class="lead">${instructionsText.replace(/\n/g, "<br>")}</p>
+            <div class="button-row">
+              <button class="secondary-btn" onclick="renderIntro()">Back</button>
+              <button class="primary-btn" onclick="startFirstScenario(this)">Start Scenario 1</button>
+            </div>
+          </div>
+
+          <div class="instructions-image-box">
+            <img src="images_AI_image_introduction.jpeg" alt="AI introduction image">
+          </div>
         </div>
-      </div>
-
-      <div class="instructions-image-box">
-       <img src="images_AI_image_introduction.jpeg" alt="AI introduction image">
-      </div>
-    </div>
-  `;
-}
+      `;
+    }
 
     function renderScenario() {
       currentScreen = "scenario";
@@ -945,6 +945,7 @@ Your mandate is simple, but brutal: make decisions no one else wants to make.
         renderInstructions();
       }, 450);
     }
+
     function startFirstScenario(btn) {
       btn.disabled = true;
       btn.classList.add("button-glow");
