@@ -452,96 +452,101 @@ Trust your judgment and follow your intuition.
 
     const scenarios = [
       {
-        title: "Scenario 1: The Autonomous Tournament Referee",
-        dimension: "agency",
-        body: `Competitive esports tournaments are increasingly assisted by AI moderation systems.
-A new system can monitor gameplay in real time and automatically detect cheating, rule violations, or unsportsmanlike conduct far faster than human referees.
+  title: "Scenario 1: Who Referees the Final?",
+  dimension: "agency",
+  body: `In traditional sports, fans often react strongly to referee assignments. Before major football matches such as Borussia Dortmund vs FC Bayern, supporters sometimes complain that certain referees are biased or make controversial decisions that influence the outcome.
 
-Developers now propose an upgrade:
-If the system detects a violation with high confidence, it could automatically issue penalties or disqualify players without waiting for human confirmation.
+A global esports league now wants to eliminate these disputes entirely.
 
-Simulations suggest this would make tournaments more fair, faster, and less vulnerable to human bias or corruption.
+Organizers propose replacing human referees with an AI officiating system during the championship finals. The system can detect rule violations, suspicious gameplay patterns, and unsportsmanlike behavior in real time. If confidence is high, it could automatically issue penalties or even decide match outcomes without human intervention.
 
-However, professional players and coaches warn that AI may misinterpret complex situations such as hardware glitches or strategic behavior, and irreversible decisions could damage careers and reputations.
+Supporters argue this would finally make competitions truly objective. No favoritism, no emotional pressure, no accusations of corruption.
 
-You are part of the tournament governance board deciding whether to adopt the fully autonomous system.`,
-        choices: [
-          {
-            label: "Choice A",
-            text: "Adopt autonomous refereeing.",
-            subtext: "If AI improves fairness and consistency across global competitions, delegating decisions is justified.",
-            side: "robots",
-            ethics: "utilitarian"
-          },
-          {
-            label: "Choice B",
-            text: "Keep human final authority.",
-            subtext: "High-stakes disciplinary decisions should remain a human responsibility, even if the process becomes slower.",
-            side: "abacus",
-            ethics: "deontological"
-          }
-        ]
-      },
-      {
-        title: "Scenario 2: The Anti-Cheat Panopticon",
-        dimension: "surveillance",
-        body: `A major multiplayer gaming platform struggles with organized cheating networks.
-To restore trust, the company proposes an AI anti-cheat system that continuously monitors player behavior, voice chat patterns, and device usage.
+However, players and coaches worry that something important may be lost. In close situations, human referees can interpret intent, consider context, and allow appeals. With a fully autonomous system, responsibility becomes harder to locate. If an algorithm makes a decisive call, there may be no meaningful way to challenge it before the result becomes official.
 
-The system could track suspicious activity across matches and automatically flag or suspend users.
+Some argue that while human referees make mistakes, they can also be held accountable. An AI decision, by contrast, may feel final but impersonal — shaping careers and championship outcomes without human judgment.
 
-Supporters argue this would dramatically improve game integrity and player safety.
-
-Critics warn that constant behavioral monitoring creates a culture of permanent surveillance where legitimate players may feel watched and profiled.
-
-The platform must decide whether to implement the system.`,
-        choices: [
-          {
-            label: "Choice A",
-            text: "Implement full monitoring.",
-            subtext: "If it protects competitive fairness and reduces toxicity, extensive data tracking is acceptable.",
-            side: "robots",
-            ethics: "utilitarian"
-          },
-          {
-            label: "Choice B",
-            text: "Limit monitoring.",
-            subtext: "Players should not sacrifice autonomy and privacy simply to improve platform control.",
-            side: "abacus",
-            ethics: "deontological"
-          }
-        ]
-      },
-      {
-  title: "Scenario 3: The Ranking Algorithm Everyone Uses",
-  dimension: "bias",
-  body: `A dominant esports analytics company provides an AI ranking system used by nearly every professional team to recruit and field players.
-
-The system predicts performance potential based on gameplay history, reaction speed metrics, and competitive match data. Over time, it has become deeply embedded in league qualification rules and roster decisions.
-
-Just weeks before the biggest championship event of the season, watched by millions and worth enormous prize money and sponsorship exposure, your internal audit reveals a serious issue.
-
-Players from certain regions consistently receive slightly lower rankings. The cause is structural: differences in server latency, data visibility, and historical participation reduce their measured performance signals.
-
-Correcting the bias now would require recalibrating the system. However, league regulations state that teams must submit final rankings immediately. If the system is changed at this stage, multiple teams would fail eligibility requirements and could be automatically disqualified.
-
-Executives argue that fixing the issue now would trigger chaos across the competitive ecosystem and damage the company’s credibility. One sponsor representative warns:
-
-“If this tournament collapses because of your system, we walk away.”
-
-You are part of the leadership team deciding what to do.`,
+The league must decide who should referee the most important matches.`,
   choices: [
     {
       label: "Choice A",
-      text: "Keep the system unchanged for this season.",
-      subtext: "Disrupting the championship and harming the entire competitive scene may be worse than tolerating a known but limited unfairness.",
+      text: "Adopt AI refereeing.",
+      subtext: "Objective and consistent decisions are more important than preserving human authority in high-stakes competition.",
       side: "robots",
       ethics: "utilitarian"
     },
     {
       label: "Choice B",
-      text: "Correct the bias immediately.",
-      subtext: "Continuing to use a system that unfairly disadvantages certain players would be morally wrong, even if it destabilizes the tournament.",
+      text: "Keep human referees in charge.",
+      subtext: "Even imperfect human judgment allows responsibility, interpretation, and the possibility to contest decisive rulings.",
+      side: "abacus",
+      ethics: "deontological"
+    }
+  ]
+},
+      {
+  title: "Scenario 2: The Esports Panopticon",
+  dimension: "surveillance",
+  body: `A major global esports league is struggling with cheating scandals and performance-enhancing substance use.
+
+To restore trust, league organizers propose a new AI monitoring system inspired by the idea of the Panopticon (a model of surveillance in which individuals behave differently because they know they might be watched at any time).
+
+Professional players would compete in controlled gaming facilities equipped with smart cameras and behavioral analytics software. The system would monitor gameplay patterns, voice communication, biometric signals, and even movements in physical space to detect possible cheating or doping.
+
+Initially, the technology is introduced as a fairness measure. Supporters argue that constant monitoring would protect competitive integrity and reassure fans, sponsors, and teams.
+
+However, critics warn about “function creep” (the gradual expansion of a technology’s purpose beyond its original goal). What begins as anti-cheating surveillance could later be used to track performance habits, emotional reactions, or contract compliance.
+
+Players worry that they are no longer just competing, but are being continuously analyzed.
+
+The league must decide whether to implement the system.`,
+  choices: [
+    {
+      label: "Choice A",
+      text: "Implement the monitoring.",
+      subtext: "If constant observation protects fairness and credibility in professional competition, extensive tracking is justified.",
+      side: "robots",
+      ethics: "utilitarian"
+    },
+    {
+      label: "Choice B",
+      text: "Reject continuous AI surveillance.",
+      subtext: "Even in high-stakes competition, players should not be subjected to pervasive monitoring systems that normalize permanent observation.",
+      side: "abacus",
+      ethics: "deontological"
+    }
+  ]
+},
+      {
+  title: "Scenario 3: The Bachelor Selection Algorithm",
+  dimension: "bias",
+  body: `A major entertainment network introduces an AI system to help select contestants for its hugely popular dating show “The Bachelors” (a reality format in which two men simultaneously search for romantic partners).
+
+The system analyzes past seasons, audience engagement, social media reactions, and relationship outcomes to predict which applicants will create compelling storylines and strong viewer connection.
+
+Over the last two years, the AI-supported casting process has been considered a major success. Ratings increased, online discussion exploded, and several couples formed on the show are still together today.
+
+However, during a new review, producers discover that the system systematically favors certain types of candidates. Applicants with particular looks, speech patterns, or lifestyle backgrounds are consistently ranked higher because previous audiences engaged more strongly with them.
+
+Correcting the bias would require redesigning the selection model and could make the upcoming season less predictable and potentially less successful.
+
+Some executives argue that the show’s purpose is entertainment, not social fairness. One producer says:
+
+“We are not choosing life partners for the country. We are choosing stories people want to watch.”
+
+You are part of the casting leadership team deciding how to proceed.`,
+  choices: [
+    {
+      label: "Choice A",
+      text: "Keep using the AI selection system.",
+      subtext: "If the model consistently produces engaging seasons and real relationships, some bias may be an acceptable trade-off.",
+      side: "robots",
+      ethics: "utilitarian"
+    },
+    {
+      label: "Choice B",
+      text: "Redesign the casting process.",
+      subtext: "Allowing a system to shape visibility and romantic opportunity in a biased way is ethically problematic, even if it improves ratings.",
       side: "abacus",
       ethics: "deontological"
     }
@@ -581,32 +586,36 @@ With competitors already experimenting with similar tools, the studio must decid
   ]
 },
       {
-        title: "Scenario 5: The Real-Time Toxicity Filter",
-        dimension: "abuse",
-        body: `A VR social gaming platform introduces an AI moderation tool that can mute or remove players instantly when harmful speech or harassment is detected.
+  title: "Scenario 5: The Live Fact Continuum",
+  dimension: "abuse",
+  body: `A major television and streaming network introduces an experimental AI fact-checking feature for live broadcasts.
 
-The system could create safer environments, especially for younger players.
+During interviews, debates, and entertainment talk shows, a small on-screen scale appears whenever a factual statement is made. The indicator moves along a continuum from “well supported” to “uncertain” to “likely false,” based on available data sources.
 
-However, critics argue that context matters, sarcasm, jokes, or heated competition may be misinterpreted.
+Producers believe this system could help audiences navigate complex discussions without interrupting speakers. Instead of cutting in with corrections, the network would simply provide contextual signals in real time.
 
-The company must decide whether to activate automatic enforcement.`,
-        choices: [
-          {
-            label: "Choice A",
-            text: "Activate automatic moderation.",
-            subtext: "Protecting community well-being outweighs the risk of occasional false penalties.",
-            side: "robots",
-            ethics: "utilitarian"
-          },
-          {
-            label: "Choice B",
-            text: "Keep moderation human-reviewed.",
-            subtext: "Social interaction should not be governed by automated judgment alone.",
-            side: "abacus",
-            ethics: "deontological"
-          }
-        ]
-      },
+However, critics argue that public speech often blends facts, interpretations, exaggerations, and emotional positioning. For example, a politician might repeat a viral claim about immigrants “eating people’s pets.” Supporters may argue that the statement is meant to illustrate how extreme the public debate has become, not to assert a literal fact. An automated system could still move the indicator toward “likely false,” shaping audience perception before the intent is clarified.
+
+Journalists worry that such tools could subtly influence which narratives feel credible, even when statements are ambiguous or strategically framed.
+
+The network must decide whether to deploy the real-time fact continuum.`,
+  choices: [
+    {
+      label: "Choice A",
+      text: "Deploy the AI fact continuum.",
+      subtext: "Providing audiences with real-time signals may improve overall understanding, even if interpretation becomes partially automated.",
+      side: "robots",
+      ethics: "utilitarian"
+    },
+    {
+      label: "Choice B",
+      text: "Avoid algorithmic fact indicators.",
+      subtext: "Public discourse should remain open to interpretation rather than being framed instantly by automated credibility judgments.",
+      side: "abacus",
+      ethics: "deontological"
+    }
+  ]
+},
       {
   title: "Scenario 6: The AI Companion You Can’t Leave",
   dimension: "abuse",
