@@ -513,61 +513,73 @@ The platform must decide whether to implement the system.`,
         ]
       },
       {
-        title: "Scenario 3: The Ranking Algorithm Everyone Uses",
-        dimension: "bias",
-        body: `A leading esports analytics company sells an AI ranking system used by teams to recruit players.
+  title: "Scenario 3: The Ranking Algorithm Everyone Uses",
+  dimension: "bias",
+  body: `A dominant esports analytics company provides an AI ranking system used by nearly every professional team to recruit and field players.
 
-The system predicts performance potential based on gameplay history, reaction speed metrics, and online match statistics.
+The system predicts performance potential based on gameplay history, reaction speed metrics, and competitive match data. Over time, it has become deeply embedded in league qualification rules and roster decisions.
 
-During an internal review, you discover that players from certain regions consistently receive slightly lower scores due to differences in server latency and data availability.
+Just weeks before the biggest championship event of the season — watched by millions and worth enormous prize money and sponsorship exposure — your internal audit reveals a serious issue.
 
-Fixing the issue would reduce prediction accuracy and may push teams toward competitor tools.
+Players from certain regions consistently receive slightly lower rankings. The cause is structural: differences in server latency, data visibility, and historical participation reduce their measured performance signals.
+
+Correcting the bias now would require recalibrating the system. However, league regulations state that teams must submit final rankings immediately. If the system is changed at this stage, multiple teams would fail eligibility requirements and could be automatically disqualified.
+
+Executives argue that fixing the issue now would trigger chaos across the competitive ecosystem and damage the company’s credibility. One sponsor representative warns:
+
+“If this tournament collapses because of your system, we walk away.”
 
 You are part of the leadership team deciding what to do.`,
-        choices: [
-          {
-            label: "Choice A",
-            text: "Keep the system unchanged.",
-            subtext: "Even imperfect tools can still improve team performance and industry efficiency.",
-            side: "robots",
-            ethics: "utilitarian"
-          },
-          {
-            label: "Choice B",
-            text: "Publicly address and correct the bias.",
-            subtext: "Allowing known unfairness to persist would be ethically unacceptable.",
-            side: "abacus",
-            ethics: "deontological"
-          }
-        ]
-      },
+  choices: [
+    {
+      label: "Choice A",
+      text: "Keep the system unchanged for this season.",
+      subtext: "Disrupting the championship and harming the entire competitive scene may be worse than tolerating a known but limited unfairness.",
+      side: "robots",
+      ethics: "utilitarian"
+    },
+    {
+      label: "Choice B",
+      text: "Correct the bias immediately.",
+      subtext: "Continuing to use a system that unfairly disadvantages certain players would be morally wrong, even if it destabilizes the tournament.",
+      side: "abacus",
+      ethics: "deontological"
+    }
+  ]
+},
       {
-        title: "Scenario 4: The Perfect Game Designer",
-        dimension: "agency",
-        body: `A game studio develops an AI system that automatically designs levels, difficulty curves, and reward systems based on player data.
+  title: "Scenario 4: The Perfect Game Designer",
+  dimension: "agency",
+  body: `A mobile game studio behind a globally successful endless-runner game similar to Temple Run is under pressure to release a major update.
 
-The system produces highly engaging experiences and increases revenue significantly.
+To stay competitive, the company develops an advanced AI design system that can automatically generate new levels, obstacles, reward timing, and difficulty progression by analyzing millions of player interactions.
 
-However, designers argue that creative judgment and emotional storytelling risk being replaced by algorithmic optimization.
+Early tests are extremely promising. The AI-designed version keeps players engaged longer, increases in-game purchases, and adapts perfectly to individual play styles.
 
-The studio must decide how much creative authority to delegate.`,
-        choices: [
-          {
-            label: "Choice A",
-            text: "Let AI design major content.",
-            subtext: "If players enjoy the result and the company thrives, automation of design decisions is justified.",
-            side: "robots",
-            ethics: "utilitarian"
-          },
-          {
-            label: "Choice B",
-            text: "Preserve human creative control.",
-            subtext: "Games are cultural products, creativity should not be reduced to behavioral optimization.",
-            side: "abacus",
-            ethics: "deontological"
-          }
-        ]
-      },
+Executives argue this could secure the studio’s market leadership.
+
+However, senior game designers are deeply concerned. They feel that the game is slowly shifting from a creative experience into a purely optimized behavioral loop. Emotional pacing, surprise, and artistic vision risk being replaced by systems that maximize retention and monetization.
+
+Some also fear that if AI takes over core design decisions now, human designers may gradually lose influence or even their roles in future projects.
+
+With competitors already experimenting with similar tools, the studio must decide how much authority to give the AI system.`,
+  choices: [
+    {
+      label: "Choice A",
+      text: "Let AI design major game content.",
+      subtext: "If players enjoy the experience and the studio survives in a highly competitive market, delegating creative decisions is justified.",
+      side: "robots",
+      ethics: "utilitarian"
+    },
+    {
+      label: "Choice B",
+      text: "Preserve human creative control.",
+      subtext: "Games are cultural and artistic products — core design choices should not be reduced to data-driven optimization.",
+      side: "abacus",
+      ethics: "deontological"
+    }
+  ]
+},
       {
         title: "Scenario 5: The Real-Time Toxicity Filter",
         dimension: "abuse",
